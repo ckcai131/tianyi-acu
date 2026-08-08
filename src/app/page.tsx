@@ -204,7 +204,7 @@ function NeedleCard({ label, acupoint, jingLuo }: { label: string; acupoint?: st
     <div className="rounded-2xl p-4 text-center shadow-md"
          style={{background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)', border: '1px solid #fcd34d'}}>
       <div className="text-xs text-yellow-900 font-semibold tracking-wider mb-2">{label}</div>
-      <div className="text-3xl font-bold font-serif text-gold mb-1.5 tracking-wide">{acupoint || '-'}</div>
+      <div className="text-3xl font-bold font-serif text-gold mb-1.5 tracking-wide">{acupoint ? `${acupoint}穴` : '-'}</div>
       <div className="text-xs text-yellow-900/70 font-medium">{jingLuo || '-'}</div>
     </div>
   )
