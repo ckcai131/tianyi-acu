@@ -32,18 +32,6 @@ export default function HomePage() {
     setResult(calculateAll(yyyy, mm, dd, hh, mi || 0))
   }
 
-  const handleNow = () => {
-    const d = new Date()
-    const yyyy = d.getFullYear()
-    const mm = String(d.getMonth() + 1).padStart(2, '0')
-    const dd = String(d.getDate()).padStart(2, '0')
-    const hh = String(d.getHours()).padStart(2, '0')
-    const mi = String(d.getMinutes()).padStart(2, '0')
-    setDate(`${yyyy}-${mm}-${dd}`)
-    setTime(`${hh}:${mi}`)
-    setResult(calculateNow())
-  }
-
   if (!mounted || !result) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -70,7 +58,7 @@ export default function HomePage() {
       </header>
 
       {/* 输入区 */}
-      <div className="bg-card border border-line rounded-2xl p-5 mb-4 grid grid-cols-1 sm:grid-cols-4 gap-3 items-end">
+      <div className="bg-card border border-line rounded-2xl p-5 mb-4 grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
         <div className="flex flex-col">
           <label className="text-xs text-muted mb-1">公历日期</label>
           <input type="date" value={date} onChange={(e) => setDate(e.target.value)}
@@ -81,10 +69,8 @@ export default function HomePage() {
           <input type="time" value={time} onChange={(e) => setTime(e.target.value)}
                  className="px-3 py-2 border border-line rounded-lg bg-yellow-50/50" />
         </div>
-        <button onClick={handleNow}
-                className="px-4 py-2 bg-gold text-white rounded-lg hover:opacity-90">此刻</button>
         <button onClick={handleCalc}
-                className="px-4 py-2 border border-line text-gold rounded-lg hover:bg-yellow-50">推算</button>
+                className="px-4 py-2 bg-gold text-white rounded-lg hover:opacity-90">推算</button>
       </div>
 
       {/* 干支 Banner */}
