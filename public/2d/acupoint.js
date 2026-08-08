@@ -3,6 +3,10 @@
  *
  * 基于 chino-meds 的 SVG 人体图 + acupoints.json (MIT)
  * 替代之前的 3D 方案, 加载速度提升 100x+
+ *
+ * 修复关键点:
+ * 1. SVG 用 viewBox 内嵌缩放, 穴位标记根据 SVG 实际渲染尺寸换算坐标
+ * 2. 穴位标记放在 SVG <foreignObject> 或跟随 SVG 一起缩放
  */
 
 (function () {
@@ -15,14 +19,21 @@
   const targetMeridian = params.get('meridian') || '';
 
   // ─── 状态 ───
-  let acupointsData = null;  // 161 个穴位
+  let acupointsData = null;
   let currentView = 'front';
-  let targetInfo = null;     // 当前展示的穴位信息
+  let targetInfo = null;
+  let svgScale = 1;          // SVG 实际渲染宽度 / viewBox 宽度
   const viewFiles = {
     front: 'body_front.svg',
     back: 'body_back.svg',
     left: 'body_left.svg',
     right: 'body_right.svg',
+  };
+  const viewBoxMap = {
+    front: { w: 200, h: 580 },
+    back:  { w: 200, h: 580 },
+    left:  { w: 200, h: 380 },
+    right: { w: 200, h: 380 },
   };
 
   // ─── 加载穴位数据 ───
@@ -40,22 +51,42 @@
     container.innerHTML = svgText;
 
     const svg = container.querySelector('svg');
-    if (svg) {
-      // 让 SVG 占满容器
-      svg.style.width = '100%';
-      svg.style.height = 'auto';
-      svg.style.maxHeight = '78vh';
+    if (!svg) return;
+
+    // 让 SVG 自适应容器宽度, 高度按比例缩放
+    // 关键: SVG 内的 viewBox 单位会按比例缩放到容器宽度
+    svg.style.width = '100%';
+    svg.style.height = 'auto';
+    svg.style.display = 'block';
+  }
+
+  // ─── 缩放监听: SVG 渲染后重新计算穴位标记位置 ───
+  function updateScale() {
+    const svg = document.querySelector('#body-container svg');
+    if (!svg) return;
+    const vb = viewBoxMap[currentView];
+    const rect = svg.getBoundingClientRect();
+    svgScale = rect.width / vb.w;
+    // 重新渲染穴位标记位置
+    if (acupointsData) {
+      renderAcupointMarkers(currentView);
     }
   }
 
   // ─── 添加穴位标记 ───
   function renderAcupointMarkers(view) {
-    const container = document.getElementById('body-container');
-    const svg = container.querySelector('svg');
+    const svg = document.querySelector('#body-container svg');
     if (!svg) return;
 
-    // 移除旧的标记
-    container.querySelectorAll('.acupoint-marker').forEach(el => el.remove());
+    // 移除旧的标记层
+    let markerLayer = svg.querySelector('#marker-layer');
+    if (markerLayer) markerLayer.remove();
+
+    // 创建标记层 (覆盖在 SVG 上方, 用 viewBox 单位定位)
+    markerLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    markerLayer.setAttribute('id', 'marker-layer');
+    markerLayer.style.pointerEvents = 'auto';
+    svg.appendChild(markerLayer);
 
     // 找出当前视图的所有穴位
     const points = acupointsData.filter(p => {
@@ -65,29 +96,53 @@
 
     points.forEach(p => {
       const pos = p.position;
-      const marker = document.createElement('div');
-      marker.className = 'acupoint-marker';
-      marker.style.left = pos.x + 'px';
-      marker.style.top = pos.y + 'px';
-      marker.dataset.code = p.code;
-      marker.dataset.name = p.name_zh;
-      marker.title = `${p.code} · ${p.name_zh} · ${p.meridian.name_zh}`;
+      const isTarget = targetCode && p.code === targetCode;
 
-      // 高亮目标穴位
-      if (targetCode && p.code === targetCode) {
-        marker.classList.add('highlight');
-      }
+      // SVG <circle> 用 viewBox 单位, 跟 SVG 一起缩放
+      const cx = pos.x;
+      const cy = pos.y;
+      const r = isTarget ? 4.5 : 2.5;
 
-      marker.addEventListener('click', () => {
-        showInfo(p);
-        // 高亮
-        container.querySelectorAll('.acupoint-marker.highlight').forEach(m => {
-          if (m !== marker) m.classList.remove('highlight');
-        });
-        marker.classList.add('highlight');
+      // 外圈 (透明背景)
+      const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      ring.setAttribute('cx', cx);
+      ring.setAttribute('cy', cy);
+      ring.setAttribute('r', r + (isTarget ? 2 : 1));
+      ring.setAttribute('fill', isTarget ? 'rgba(184, 57, 46, 0.25)' : 'rgba(168, 98, 31, 0.18)');
+      ring.setAttribute('stroke', isTarget ? '#b8392e' : '#a8621f');
+      ring.setAttribute('stroke-width', isTarget ? 0.8 : 0.5);
+      ring.style.cursor = 'pointer';
+      ring.style.pointerEvents = 'auto';
+
+      // 添加 hover 效果
+      ring.addEventListener('mouseenter', () => {
+        ring.setAttribute('fill', isTarget ? 'rgba(184, 57, 46, 0.4)' : 'rgba(168, 98, 31, 0.4)');
+      });
+      ring.addEventListener('mouseleave', () => {
+        ring.setAttribute('fill', isTarget ? 'rgba(184, 57, 46, 0.25)' : 'rgba(168, 98, 31, 0.18)');
       });
 
-      container.appendChild(marker);
+      // 添加脉冲动画 (如果目标穴位)
+      if (isTarget) {
+        const animate = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+        animate.setAttribute('attributeName', 'r');
+        animate.setAttribute('values', `${r + 2};${r + 5};${r + 2}`);
+        animate.setAttribute('dur', '1.6s');
+        animate.setAttribute('repeatCount', 'indefinite');
+        ring.appendChild(animate);
+      }
+
+      ring.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showInfo(p);
+      });
+
+      // 添加 title tooltip
+      const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+      title.textContent = `${p.code} · ${p.name_zh}穴 · ${p.meridian.name_zh}`;
+      ring.appendChild(title);
+
+      markerLayer.appendChild(ring);
     });
   }
 
@@ -152,7 +207,10 @@
       btn.classList.toggle('active', btn.dataset.view === view);
     });
     await loadSVG(view);
-    renderAcupointMarkers(view);
+    // 等 SVG 渲染完成
+    requestAnimationFrame(() => {
+      updateScale();
+    });
   }
 
   // ─── 视图切换事件 ───
@@ -160,11 +218,15 @@
     btn.addEventListener('click', () => switchView(btn.dataset.view));
   });
 
+  // ─── 窗口大小变化时重新计算缩放 ───
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(updateScale);
+  });
+
   // ─── 初始化 ───
   async function main() {
     await loadAcupoints();
 
-    // 如果 URL 指定穴位, 自动选择正确视图
     let initialView = 'front';
     if (targetCode) {
       const point = acupointsData.find(p => p.code === targetCode);
@@ -177,7 +239,6 @@
     await switchView(initialView);
     document.getElementById('loading').classList.add('hidden');
 
-    // 如果有目标穴位, 自动打开详情
     if (targetInfo) {
       showInfo(targetInfo);
     }

@@ -44,6 +44,7 @@
     .canvas-area {
       background: #f5efe3;
       padding: 16px;
+      padding-top: 60px;  /* 留出视图切换按钮空间 */
       position: relative;
       display: flex;
       justify-content: center;
@@ -52,8 +53,9 @@
 
     .view-toggle {
       position: absolute;
-      top: 16px;
-      left: 16px;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       gap: 4px;
       background: #fbf6e9;
@@ -61,6 +63,7 @@
       border-radius: 8px;
       padding: 4px;
       z-index: 10;
+      box-shadow: 0 1px 4px rgba(168, 98, 31, 0.1);
     }
     .view-toggle button {
       background: transparent;
