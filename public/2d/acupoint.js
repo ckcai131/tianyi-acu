@@ -53,8 +53,10 @@
     const svg = container.querySelector('svg');
     if (!svg) return;
 
-    // 让 SVG 自适应容器宽度, 高度按比例缩放
-    // 关键: SVG 内的 viewBox 单位会按比例缩放到容器宽度
+    // 删除原始 width/height 属性 (默认是 200x580)
+    // 让 CSS 控制: width=100%, height=auto
+    svg.removeAttribute('width');
+    svg.removeAttribute('height');
     svg.style.width = '100%';
     svg.style.height = 'auto';
     svg.style.display = 'block';
