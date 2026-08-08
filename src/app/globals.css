@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #faf7f0;
+  --card: #fffdf7;
+  --ink: #1a1410;
+  --muted: #6b5d50;
+  --line: #d9cdb8;
+  --gold: #b45309;
+  --gold-soft: #fef3c7;
+  --vermilion: #b91c1c;
+  --jade: #166534;
+}
+
+body {
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+}
