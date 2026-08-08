@@ -267,7 +267,7 @@ function NeedleCard({ index, label, acupoint, jingLuo }: { index: string; label:
       {acupoint && (
         has3D ? (
           <a
-            href={`3d/?point=${mapping!.code}&name=${encodeURIComponent(acupoint)}穴&meridian=${encodeURIComponent(jingLuo || '')}`}
+            href={`2d/?point=${mapping!.code}&name=${encodeURIComponent(acupoint)}穴&meridian=${encodeURIComponent(jingLuo || '')}`}
             className="inline-block mt-2 text-[10px] sm:text-xs px-2 py-0.5 rounded-full transition"
             style={{
               background: 'var(--gold)',
@@ -275,7 +275,7 @@ function NeedleCard({ index, label, acupoint, jingLuo }: { index: string; label:
               textDecoration: 'none',
             }}
           >
-            🎯 3D 查看
+            📍 经穴图
           </a>
         ) : (
           <div
