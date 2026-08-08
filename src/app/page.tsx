@@ -44,7 +44,6 @@ export default function HomePage() {
   const [mounted, setMounted] = useState(false)
   const [date, setDate] = useState('')
   const [shichenValue, setShichenValue] = useState(19) // 默认戌时
-  const [minute, setMinute] = useState(0)
 
   useEffect(() => {
     setMounted(true)
@@ -54,7 +53,6 @@ export default function HomePage() {
     const dd = String(d.getDate()).padStart(2, '0')
     setDate(`${yyyy}-${mm}-${dd}`)
     setShichenValue(hourToShichenValue(d.getHours()))
-    setMinute(d.getMinutes())
     setResult(calculateNow())
     const id = setInterval(() => setResult(calculateNow()), 30000)
     return () => clearInterval(id)
@@ -63,7 +61,7 @@ export default function HomePage() {
   const handleCalc = () => {
     if (!date) return
     const [yyyy, mm, dd] = date.split('-').map(Number)
-    setResult(calculateAll(yyyy, mm, dd, shichenValue, minute))
+    setResult(calculateAll(yyyy, mm, dd, shichenValue, 0))
   }
 
   if (!mounted || !result) {
@@ -111,14 +109,6 @@ export default function HomePage() {
           </div>
           <button onClick={handleCalc}
                   className="px-4 py-2 bg-gold text-white rounded-lg hover:opacity-90">推算</button>
-        </div>
-        {/* 分钟微调 */}
-        <div className="mt-3 flex items-center gap-3">
-          <label className="text-xs text-muted whitespace-nowrap">分钟</label>
-          <input type="range" min="0" max="59" step="1" value={minute}
-                 onChange={(e) => setMinute(Number(e.target.value))}
-                 className="flex-1 accent-amber-600" />
-          <span className="text-sm text-gold font-mono w-8 text-right">{String(minute).padStart(2, '0')}</span>
         </div>
       </div>
 
