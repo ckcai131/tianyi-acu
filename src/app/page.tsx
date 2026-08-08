@@ -73,6 +73,13 @@ export default function HomePage() {
                 className="px-4 py-2 bg-gold text-white rounded-lg hover:opacity-90">推算</button>
       </div>
 
+      {/* 三穴重点展示 */}
+      <div className="grid grid-cols-3 gap-3 mb-4">
+        <NeedleCard label="① 值符" acupoint={result.zhiFu?.acupoint} jingLuo={result.zhiFu?.actualJingLuo} />
+        <NeedleCard label="② 值使" acupoint={result.zhiShi?.acupoint} jingLuo={result.zhiShi?.jingLuo} />
+        <NeedleCard label="③ 第三针" acupoint={result.zhiYangYin?.acupoint} jingLuo={result.zhiYangYin?.jingLuo} />
+      </div>
+
       {/* 干支 Banner */}
       <div className="rounded-2xl p-5 mb-4 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center"
            style={{background: 'linear-gradient(135deg, var(--gold-soft), #fde68a)', border: '1px solid #fcd34d'}}>
@@ -188,6 +195,17 @@ function Row({ k, v, acc }: { k: string; v?: string; acc?: boolean }) {
     <div className="flex justify-between py-1.5 border-b border-dashed border-line text-sm last:border-0">
       <span className="text-muted font-medium">{k}</span>
       <span className={`font-semibold font-serif ${acc ? 'text-vermilion text-lg' : ''}`}>{v || '-'}</span>
+    </div>
+  )
+}
+
+function NeedleCard({ label, acupoint, jingLuo }: { label: string; acupoint?: string; jingLuo?: string }) {
+  return (
+    <div className="rounded-2xl p-4 text-center shadow-md"
+         style={{background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)', border: '1px solid #fcd34d'}}>
+      <div className="text-xs text-yellow-900 font-semibold tracking-wider mb-2">{label}</div>
+      <div className="text-3xl font-bold font-serif text-gold mb-1.5 tracking-wide">{acupoint || '-'}</div>
+      <div className="text-xs text-yellow-900/70 font-medium">{jingLuo || '-'}</div>
     </div>
   )
 }
