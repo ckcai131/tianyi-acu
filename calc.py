@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 tianyi-acu · 奇门通玄针法 计算核心
-基于《神针心传》原书 124-176 页结构化数据表.
 
 入参: sys.argv[1] = "YYYY-MM-DD HH:MM"
 出参: JSON 对象
