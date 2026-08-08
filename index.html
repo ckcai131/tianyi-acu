@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>奇门通玄针法 · 天乙神针 — 择时开穴</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf7f0;
+            --card: #fffdf7;
+            --ink: #1a1410;
+            --muted: #6b5d50;
+            --line: #d9cdb8;
+            --gold: #b45309;
+            --gold-soft: #fef3c7;
+            --vermilion: #b91c1c;
+            --jade: #166534;
+            --danger: #991b1b;
+            --success: #166534;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Noto Serif SC", "Noto Sans SC", serif;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            line-height: 1.65;
+        }
+        .container { max-width: 920px; margin: 0 auto; padding: 24px 20px 64px; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a1410 0%, #2d1f15 100%);
+            color: #fef3c7;
+            border-radius: 14px;
+            padding: 32px 28px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: "☯"; position: absolute; right: 20px; top: 50%;
+            transform: translateY(-50%); font-size: 4em; opacity: 0.08;
+        }
+        .header h1 {
+            font-size: 2em; font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #fbbf24;
+            margin-bottom: 4px;
+        }
+        .header .subtitle {
+            color: #fcd34d; font-size: 0.9em; opacity: 0.8;
+        }
+        .header .brand {
+            position: absolute; top: 18px; right: 22px;
+            font-size: 0.72em; color: #92400e;
+            background: rgba(254, 243, 199, 0.08);
+            padding: 4px 10px; border-radius: 6px;
+        }
+        .back-link {
+            display: inline-flex; align-items: center;
+            font-size: 0.85em; color: var(--muted);
+            text-decoration: none; margin-bottom: 14px;
+        }
+        .back-link:hover { color: var(--gold); }
+
+        /* Input panel */
+        .input-panel {
+            background: var(--card); border: 1px solid var(--line);
+            border-radius: 14px; padding: 18px 20px;
+            margin-bottom: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr auto auto;
+            gap: 12px; align-items: end;
+        }
+        @media (max-width: 768px) {
+            .input-panel { grid-template-columns: 1fr 1fr; }
+        }
+        .input-group { display: flex; flex-direction: column; }
+        .input-group label {
+            font-size: 0.76em; color: var(--muted);
+            margin-bottom: 5px; font-weight: 500;
+        }
+        .input-group input {
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            border-radius: 8px; font-size: 1em;
+            font-family: inherit; background: #fefdf8;
+            transition: border-color .15s;
+        }
+        .input-group input:focus {
+            outline: none; border-color: var(--gold);
+            background: #fff;
+        }
+        .btn {
+            padding: 9px 18px;
+            background: var(--gold); color: #fff;
+            border: none; border-radius: 8px;
+            font-size: 0.92em; font-weight: 500;
+            cursor: pointer; font-family: inherit;
+            transition: opacity .15s, transform .15s;
+        }
+        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn:disabled { opacity: 0.5; cursor: wait; }
+        .btn-secondary {
+            background: transparent; color: var(--gold);
+            border: 1px solid var(--line);
+        }
+
+        /* Banner: 日时柱 */
+        .ganzhi-banner {
+            background: linear-gradient(135deg, var(--gold-soft), #fde68a);
+            border: 1px solid #fcd34d;
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+            text-align: center;
+        }
+        @media (max-width: 768px) { .ganzhi-banner { grid-template-columns: 1fr; } }
+        .ganzhi-cell .label {
+            font-size: 0.78em; color: #92400e;
+            font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.05em; margin-bottom: 6px;
+        }
+        .ganzhi-cell .value {
+            font-size: 2em; font-weight: 700;
+            color: var(--ink); line-height: 1;
+            font-family: "Noto Serif SC", serif;
+        }
+        .ganzhi-cell .meta { font-size: 0.72em; color: var(--muted); margin-top: 4px; }
+
+        /* 4 大算法卡片 */
+        .methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px; margin-bottom: 16px;
+        }
+        @media (max-width: 768px) { .methods { grid-template-columns: 1fr; } }
+        .method-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 18px 20px;
+        }
+        .method-card.full { grid-column: 1 / -1; }
+        .method-card h3 {
+            font-size: 1.08em; font-weight: 700;
+            margin-bottom: 10px;
+            display: flex; align-items: center;
+            gap: 8px; color: var(--gold);
+        }
+        .method-card .row {
+            display: flex; justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px dashed var(--line);
+            font-size: 0.9em;
+        }
+        .method-card .row:last-child { border-bottom: none; }
+        .method-card .row .k { color: var(--muted); font-weight: 500; }
+        .method-card .row .v {
+            font-weight: 600; color: var(--ink);
+            font-family: "Noto Serif SC", serif;
+        }
+        .method-card .row .v.acc { color: var(--vermilion); font-size: 1.1em; }
+
+        /* 大吉时 / 喜神方 */
+        .auspicious-banner {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #86efac;
+            border-radius: 14px;
+            padding: 18px 24px;
+            margin-bottom: 16px;
+            display: grid; grid-template-columns: auto 1fr; gap: 24px;
+            align-items: center;
+        }
+        @media (max-width: 768px) { .auspicious-banner { grid-template-columns: 1fr; } }
+        .auspicious-icon {
+            font-size: 2.4em;
+        }
+        .auspicious-text .title {
+            font-size: 1.05em; font-weight: 700;
+            color: #166534; margin-bottom: 4px;
+        }
+        .auspicious-text .desc {
+            color: #4b5563; font-size: 0.9em;
+        }
+
+        /* Unauspicious banner */
+        .inauspicious-banner {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 1px solid #fca5a5;
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+        }
+        .inauspicious-banner .title {
+            font-size: 1em; font-weight: 700;
+            color: #991b1b; margin-bottom: 4px;
+        }
+        .inauspicious-banner .desc {
+            color: #4b5563; font-size: 0.9em;
+        }
+
+        /* Pills */
+        .pill {
+            display: inline-block;
+            background: var(--gold-soft);
+            color: var(--gold);
+            border-radius: 12px;
+            padding: 3px 10px;
+            margin: 2px 3px;
+            font-size: 0.85em;
+            font-family: "Noto Serif SC", serif;
+            font-weight: 600;
+        }
+        .pill.success { background: #dcfce7; color: #166534; }
+        .pill.danger { background: #fee2e2; color: #991b1b; }
+
+        /* 来源页标注 */
+        .source-page {
+            font-size: 0.72em; color: var(--muted);
+            margin-top: 8px; font-style: italic;
+        }
+
+        /* Loading + Error */
+        .loading, .error { display: none; text-align: center; padding: 24px; }
+        .loading.active, .error.active { display: block; }
+        .error {
+            background: #fef2f2; color: #991b1b;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+        }
+        .spinner {
+            display: inline-block;
+            width: 28px; height: 28px;
+            border: 3px solid var(--line);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .result { display: none; }
+        .result.active { display: block; }
+
+        /* Footer */
+        .footer {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+            color: var(--muted); font-size: 0.8em;
+            line-height: 1.7;
+        }
+        .footer a { color: var(--muted); }
+        .footer a:hover { color: var(--gold); }
+        .footer .author {
+            background: var(--gold-soft);
+            border-left: 3px solid var(--gold);
+            padding: 10px 14px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 14px 12px 48px; }
+            .header { padding: 24px 20px; }
+            .header h1 { font-size: 1.6em; }
+            .ganzhi-cell .value { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="../" class="back-link">← 返回八万实验室</a>
+
+    <div class="header">
+        <div class="brand">八万实验室 · tianyi-acu</div>
+        <h1>奇门通玄针法</h1>
+        <div class="subtitle">《神针心传·天乙神针续篇》· 张伟傑编著 · 择时开穴</div>
+    </div>
+
+    <!-- 输入区 -->
+    <div class="input-panel">
+        <div class="input-group">
+            <label for="date">公历日期</label>
+            <input type="date" id="date">
+        </div>
+        <div class="input-group">
+            <label for="time">时辰（24h）</label>
+            <input type="time" id="time" value="19:00">
+        </div>
+        <button class="btn" id="btn-now">此刻</button>
+        <button class="btn btn-secondary" id="btn-submit">推算</button>
+    </div>
+
+    <div class="error" id="error"></div>
+    <div class="loading" id="loading"><div class="spinner"></div><p style="margin-top:10px;color:var(--muted)">推演天时…</p></div>
+
+    <!-- 结果区 -->
+    <div class="result" id="result">
+        <!-- 1. 干支 Banner -->
+        <div class="ganzhi-banner">
+            <div class="ganzhi-cell">
+                <div class="label">日柱</div>
+                <div class="value" id="r-day-ganzhi">-</div>
+                <div class="meta">序 #<span id="r-day-order">-</span> · <span id="r-day-yy">-</span></div>
+            </div>
+            <div class="ganzhi-cell">
+                <div class="label">时柱</div>
+                <div class="value" id="r-hour-ganzhi">-</div>
+                <div class="meta" id="r-shichen-name">-</div>
+            </div>
+            <div class="ganzhi-cell">
+                <div class="label">喜神方</div>
+                <div class="value" id="r-xi-shen">-</div>
+                <div class="meta">值日经络: <span id="r-zhifu-jing">-</span></div>
+            </div>
+        </div>
+
+        <!-- 2. 大吉 / 非大吉 Banner -->
+        <div id="r-auspicious-area"></div>
+
+        <!-- 3. 4 大算法 -->
+        <div class="methods">
+            <!-- 值符 (1) -->
+            <div class="method-card">
+                <h3>① 值符</h3>
+                <div class="row"><span class="k">值日经络</span><span class="v" id="r-zf-jing">-</span></div>
+                <div class="row"><span class="k">值符穴</span><span class="v acc" id="r-zf-acu">-</span></div>
+                <div class="row"><span class="k">穴性</span><span class="v" id="r-zf-xuexing">-</span></div>
+                <div class="row"><span class="k">规则</span><span class="v" id="r-zf-rule">-</span></div>
+                <div class="source-page">来源: 原书 p.<span id="r-zf-page">-</span></div>
+            </div>
+
+            <!-- 值使 (2) -->
+            <div class="method-card">
+                <h3>② 值使</h3>
+                <div class="row"><span class="k">经络</span><span class="v" id="r-zs-jing">-</span></div>
+                <div class="row"><span class="k">值使穴</span><span class="v acc" id="r-zs-acu">-</span></div>
+                <div class="row"><span class="k">穴性</span><span class="v" id="r-zs-xuexing">-</span></div>
+                <div class="row"><span class="k">五行</span><span class="v" id="r-zs-wuxing">-</span></div>
+                <div class="source-page">来源: 原书 p.<span id="r-zs-page">-</span></div>
+            </div>
+
+            <!-- 值阳/值阴 (3) - 第三针 -->
+            <div class="method-card">
+                <h3>③ 第三针（<span id="r-yy-mode">-</span>）</h3>
+                <div class="row"><span class="k">经络</span><span class="v" id="r-yy-jing">-</span></div>
+                <div class="row"><span class="k">穴位</span><span class="v acc" id="r-yy-acu">-</span></div>
+                <div class="row"><span class="k">穴性</span><span class="v" id="r-yy-xuexing">-</span></div>
+                <div class="row"><span class="k">日阴阳</span><span class="v" id="r-yy-yy">-</span></div>
+                <div class="source-page">来源: 原书 p.<span id="r-yy-page">-</span></div>
+            </div>
+
+            <!-- 吉凶时 (4) -->
+            <div class="method-card">
+                <h3>④ 吉凶时</h3>
+                <div class="row"><span class="k">神煞</span><span class="v" id="r-jx-shensha">-</span></div>
+                <div class="row"><span class="k">黄/黑道</span><span class="v" id="r-jx-hd">-</span></div>
+                <div class="row"><span class="k">截空</span><span class="v" id="r-jx-jk">-</span></div>
+                <div class="row"><span class="k">五不遇</span><span class="v" id="r-jx-wby">-</span></div>
+                <div class="row"><span class="k">大吉</span><span class="v" id="r-jx-dj">-</span></div>
+                <div class="source-page">来源: 原书 p.<span id="r-jx-page">-</span></div>
+            </div>
+
+            <!-- 今日大吉时 (full-width) -->
+            <div class="method-card full">
+                <h3>📅 今日大吉时</h3>
+                <div id="r-daji-shichen"></div>
+                <div class="source-page">本日的所有黄道时中, 排除截空 + 五不遇 = 大吉时</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="author">
+            <strong>【原著信息】</strong>《神針心傳 · 天乙神針續篇》張偉傑編著，元氣齋出版社。整理自原书 124-176 页"奇门通玄针法"章节，含 <strong>60甲子主表 + 720 吉凶时 + 120 值符 + 12 值使 + 24 值阳/值阴</strong> 完整结构化数据。
+        </div>
+        <p><strong>【免责声明】</strong>本站仅供道学爱好者学习参考，<strong>不构成任何针灸临床专业建议</strong>。原书存在 16 处排印错误（见《校勘异常》），所有修正均可追溯。</p>
+        <p style="margin-top:6px;color:var(--gold)">© Bawan Lab · 数据基于《神针心传》结构化整理</p>
+    </footer>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+
+function setNow() {
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const hh = String(d.getHours()).padStart(2, '0');
+    const mi = String(d.getMinutes()).padStart(2, '0');
+    $('date').value = `${yyyy}-${mm}-${dd}`;
+    $('time').value = `${hh}:${mi}`;
+}
+setNow();
+
+$('btn-now').onclick = () => { setNow(); submit(); };
+$('btn-submit').onclick = submit;
+$('date').onchange = submit;
+$('time').onchange = submit;
+
+async function submit() {
+    const date = $('date').value;
+    const time = $('time').value;
+    if (!date || !time) return;
+    const datetime = `${date} ${time}`;
+
+    $('loading').classList.add('active');
+    $('result').classList.remove('active');
+    $('error').classList.remove('active');
+    $('btn-submit').disabled = true;
+
+    try {
+        const resp = await fetch(`api.php?datetime=${encodeURIComponent(datetime)}`);
+        const data = await resp.json();
+        if (data.error) {
+            showError(data.error);
+            return;
+        }
+        render(data);
+        $('result').classList.add('active');
+    } catch (e) {
+        showError('网络错误: ' + e.message);
+    } finally {
+        $('loading').classList.remove('active');
+        $('btn-submit').disabled = false;
+    }
+}
+
+function showError(msg) {
+    const e = $('error');
+    e.textContent = '⚠ ' + msg;
+    e.classList.add('active');
+}
+
+function render(d) {
+    // Banner
+    $('r-day-ganzhi').textContent = d.day_ganzhi;
+    $('r-hour-ganzhi').textContent = d.hour_ganzhi;
+    $('r-day-order').textContent = d.main.序号;
+    $('r-day-yy').textContent = d.day_yin_yang + '日';
+    $('r-shichen-name').textContent = d.shichen_name;
+    $('r-xi-shen').textContent = d.main.喜神方;
+    $('r-zhifu-jing').textContent = d.main.值符经络;
+
+    // Auspicious / Inauspicious
+    const isDj = d.ji_xiong.大吉 === '是';
+    const auspiciousArea = $('r-auspicious-area');
+    if (isDj) {
+        auspiciousArea.innerHTML = `
+            <div class="auspicious-banner">
+                <div class="auspicious-icon">✓</div>
+                <div class="auspicious-text">
+                    <div class="title">大吉时</div>
+                    <div class="desc">${d.ji_xiong.黄黑道} · 神煞「${d.ji_xiong.神煞}」 · 可施针</div>
+                </div>
+            </div>`;
+    } else {
+        const reasons = [];
+        if (d.ji_xiong.黄黑道 === '黑道') reasons.push('黑道');
+        if (d.ji_xiong.截空 === '是') reasons.push('截空');
+        if (d.ji_xiong.五不遇 === '是') reasons.push('五不遇');
+        auspiciousArea.innerHTML = `
+            <div class="inauspicious-banner">
+                <div class="title">✗ 非大吉时</div>
+                <div class="desc">原因: ${reasons.join(' · ')}</div>
+            </div>`;
+    }
+
+    // 值符
+    const zf = d.zhi_fu;
+    $('r-zf-jing').textContent = zf.实际经络;
+    $('r-zf-acu').textContent = zf.穴位;
+    $('r-zf-xuexing').textContent = zf.穴性;
+    $('r-zf-rule').textContent = zf.规则;
+    $('r-zf-page').textContent = zf.来源页;
+
+    // 值使
+    const zs = d.zhi_shi;
+    $('r-zs-jing').textContent = zs.经络;
+    $('r-zs-acu').textContent = zs.穴位;
+    $('r-zs-xuexing').textContent = zs.穴性;
+    $('r-zs-wuxing').textContent = zs.五行类别;
+    $('r-zs-page').textContent = zs.来源页;
+
+    // 第三针 (值阳/值阴)
+    const yy = d.zhi_yang_yin;
+    $('r-yy-mode').textContent = yy.模式;
+    $('r-yy-jing').textContent = yy.经络;
+    $('r-yy-acu').textContent = yy.穴位;
+    $('r-yy-xuexing').textContent = yy.穴性;
+    $('r-yy-yy').textContent = yy.日阴阳;
+    $('r-yy-page').textContent = yy.来源页;
+
+    // 吉凶时
+    const jx = d.ji_xiong;
+    $('r-jx-shensha').textContent = jx.神煞;
+    $('r-jx-hd').textContent = jx.黄黑道;
+    $('r-jx-jk').textContent = jx.截空;
+    $('r-jx-wby').textContent = jx.五不遇;
+    $('r-jx-dj').textContent = jx.大吉;
+    $('r-jx-page').textContent = jx.来源页;
+
+    // 今日大吉时 (pills)
+    const dajiHours = d.main.大吉时 || [];
+    const dajiHtml = dajiHours.map(h =>
+        `<span class="pill ${h === d.hour_zhi ? 'success' : ''}">${h}时</span>`
+    ).join('') || '<span style="color:var(--muted)">无</span>';
+    $('r-daji-shichen').innerHTML = dajiHtml;
+}
+
+submit();
+</script>
+</body>
+</html>
