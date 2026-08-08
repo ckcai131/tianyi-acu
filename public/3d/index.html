@@ -59,14 +59,21 @@
       font-weight: 600;
       margin-bottom: 2px;
     }
+    #info .acupoint .code {
+      color: #8a7d65;
+      font-size: 13px;
+      font-weight: 400;
+      margin-left: 6px;
+    }
     #info .meridian {
       color: #8a7d65;
       font-size: 12px;
     }
-    #info .warn {
-      color: #d97706;
+    #info .location {
+      color: #d4c5a8;
       font-size: 11px;
       margin-top: 6px;
+      line-height: 1.4;
     }
     #info .back {
       display: inline-block;
@@ -101,18 +108,26 @@
 
 <div id="info">
   <div class="title">3D 经穴图 · 奇门通玄</div>
-  <div class="acupoint" id="acupoint-name">--</div>
+  <div class="acupoint">
+    <span id="acupoint-name">--</span>
+    <span class="code" id="acupoint-code"></span>
+  </div>
   <div class="meridian" id="acupoint-meridian">--</div>
-  <div class="warn" id="acupoint-warn"></div>
+  <div class="location" id="acupoint-location"></div>
   <a href="../" class="back">← 返回推算结果</a>
 </div>
 
 <div id="status">加载 3D 模型...</div>
 
-<script src="three/build/three.js"></script>
-<script src="three/loaders/OBJLoader.js"></script>
-<script src="three/controls/OrbitControls.js"></script>
-<script src="three.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://esm.sh/three@0.160.0",
+    "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="three.module.js?v=11"></script>
 
 </body>
 </html>

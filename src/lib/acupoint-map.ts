@@ -1,107 +1,191 @@
 /**
- * tianyi-acu 穴位 → acu-master 3D 穴位代码 映射表
+ * tianyi-acu 穴位 → chino-meds 3D 穴位代码 映射表
  *
- * acu-master 支持的经络:
- *   - p (肺经, 1-11)
- *   - ig (大肠经, 17-20)
- *   - e (胃经, 部分 1-45)
- *   - vc (任脉, 2-24)
+ * 数据源: https://github.com/GiorgioHuang/chino-meds (MIT)
+ * 覆盖 161 个标准穴位, 15 条经络全 (含胆/肝/三焦/心包/膀胱等)
+ * 标准: GB/T 12346-2021 + WHO 2008
  *
- * 中医穴位 → acu-master 代码 (仅覆盖 acu-master 支持的)
+ * 注: tianyi-acu 计算的穴位名称若有此映射, 即跳转 3D 查看;
+ *      若不在 161 列表中 (例如天井穴), 仍显示"仅文字"
  */
 
-export type MeridianCode = 'p' | 'ig' | 'e' | 'vc' | 'cs'
+export type MeridianCode =
+  | "LU" | "LI" | "ST" | "SP" | "HT" | "SI" | "BL" | "KI"
+  | "PC" | "TE" | "GB" | "LR" | "GV" | "CV" | "EX"
 
 export interface AcupointMapping {
-  code: string                    // acu-master 代码, 如 'p1'
-  name: string                    // 中文名, 如 '中府穴'
-  meridian: MeridianCode
+  code: string                    // chino-meds 代码, 如 "LI4"
+  name: string                    // 中文名, 如 "合谷穴"
+  meridian: MeridianCode          // 经络代码
+  meridianZh?: string             // 经络中文
 }
 
-// 完整映射表 (基于中医标准穴位命名)
 export const ACUPOINT_MAP: Record<string, AcupointMapping> = {
-  // 肺经 (P1-P11)
-  '中府': { code: 'p1', name: '中府穴', meridian: 'p' },
-  '云门': { code: 'p2', name: '云门穴', meridian: 'p' },
-  '天府': { code: 'p3', name: '天府穴', meridian: 'p' },
-  '侠白': { code: 'p4', name: '侠白穴', meridian: 'p' },
-  '尺泽': { code: 'p5', name: '尺泽穴', meridian: 'p' },
-  '孔最': { code: 'p6', name: '孔最穴', meridian: 'p' },
-  '列缺': { code: 'p7', name: '列缺穴', meridian: 'p' },
-  '经渠': { code: 'p8', name: '经渠穴', meridian: 'p' },
-  '太渊': { code: 'p9', name: '太渊穴', meridian: 'p' },
-  '鱼际': { code: 'p10', name: '鱼际穴', meridian: 'p' },
-  '少商': { code: 'p11', name: '少商穴', meridian: 'p' },
-
-  // 大肠经 (IG17-IG20) - 仅有4 个穴位在 acu-master
-  '天鼎': { code: 'ig17', name: '天鼎穴', meridian: 'ig' },
-  '扶突': { code: 'ig18', name: '扶突穴', meridian: 'ig' },
-  '禾髎': { code: 'ig19', name: '禾髎穴', meridian: 'ig' },
-  '迎香': { code: 'ig20', name: '迎香穴', meridian: 'ig' },
-
-  // 胃经 (部分) - acu-master 只支持 E1-E4, E9-E20, E34-E45
-  '承泣': { code: 'e1', name: '承泣穴', meridian: 'e' },
-  '四白': { code: 'e2', name: '四白穴', meridian: 'e' },
-  '巨髎': { code: 'e3', name: '巨髎穴', meridian: 'e' },
-  '地仓': { code: 'e4', name: '地仓穴', meridian: 'e' },
-  '人迎': { code: 'e9', name: '人迎穴', meridian: 'e' },
-  '水突': { code: 'e10', name: '水突穴', meridian: 'e' },
-  '气舍': { code: 'e11', name: '气舍穴', meridian: 'e' },
-  '缺盆': { code: 'e12', name: '缺盆穴', meridian: 'e' },
-  '气户': { code: 'e13', name: '气户穴', meridian: 'e' },
-  '库房': { code: 'e14', name: '库房穴', meridian: 'e' },
-  '屋翳': { code: 'e15', name: '屋翳穴', meridian: 'e' },
-  '膺窗': { code: 'e16', name: '膺窗穴', meridian: 'e' },
-  '乳中': { code: 'e17', name: '乳中穴', meridian: 'e' },
-  '乳根': { code: 'e18', name: '乳根穴', meridian: 'e' },
-  '不容': { code: 'e19', name: '不容穴', meridian: 'e' },
-  '承满': { code: 'e20', name: '承满穴', meridian: 'e' },
-  '气冲': { code: 'e30', name: '气冲穴', meridian: 'e' },
-  '髀关': { code: 'e31', name: '髀关穴', meridian: 'e' },
-  '伏兔': { code: 'e32', name: '伏兔穴', meridian: 'e' },
-  '阴市': { code: 'e33', name: '阴市穴', meridian: 'e' },
-  '梁丘': { code: 'e34', name: '梁丘穴', meridian: 'e' },
-  '犊鼻': { code: 'e35', name: '犊鼻穴', meridian: 'e' },
-  '足三里': { code: 'e36', name: '足三里穴', meridian: 'e' },
-  '上巨虚': { code: 'e37', name: '上巨虚穴', meridian: 'e' },
-  '条口': { code: 'e38', name: '条口穴', meridian: 'e' },
-  '下巨虚': { code: 'e39', name: '下巨虚穴', meridian: 'e' },
-  '丰隆': { code: 'e40', name: '丰隆穴', meridian: 'e' },
-  '解溪': { code: 'e41', name: '解溪穴', meridian: 'e' },
-  '冲阳': { code: 'e42', name: '冲阳穴', meridian: 'e' },
-  '陷谷': { code: 'e43', name: '陷谷穴', meridian: 'e' },
-  '内庭': { code: 'e44', name: '内庭穴', meridian: 'e' },
-  '厉兑': { code: 'e45', name: '厉兑穴', meridian: 'e' },
-
-  // 任脉 (VC2-VC24)
-  '曲骨': { code: 'vc2', name: '曲骨穴', meridian: 'vc' },
-  '中极': { code: 'vc3', name: '中极穴', meridian: 'vc' },
-  '关元': { code: 'vc4', name: '关元穴', meridian: 'vc' },
-  '石门': { code: 'vc5', name: '石门穴', meridian: 'vc' },
-  '气海': { code: 'vc6', name: '气海穴', meridian: 'vc' },
-  '阴交': { code: 'vc7', name: '阴交穴', meridian: 'vc' },
-  '神阙': { code: 'vc8', name: '神阙穴', meridian: 'vc' },
-  '水分': { code: 'vc9', name: '水分穴', meridian: 'vc' },
-  '下脘': { code: 'vc10', name: '下脘穴', meridian: 'vc' },
-  '建里': { code: 'vc11', name: '建里穴', meridian: 'vc' },
-  '中脘': { code: 'vc12', name: '中脘穴', meridian: 'vc' },
-  '上脘': { code: 'vc13', name: '上脘穴', meridian: 'vc' },
-  '巨阙': { code: 'vc14', name: '巨阙穴', meridian: 'vc' },
-  '鸠尾': { code: 'vc15', name: '鸠尾穴', meridian: 'vc' },
-  '中庭': { code: 'vc16', name: '中庭穴', meridian: 'vc' },
-  '膻中': { code: 'vc17', name: '膻中穴', meridian: 'vc' },
-  '玉堂': { code: 'vc18', name: '玉堂穴', meridian: 'vc' },
-  '紫宫': { code: 'vc19', name: '紫宫穴', meridian: 'vc' },
-  '华盖': { code: 'vc20', name: '华盖穴', meridian: 'vc' },
-  '璇玑': { code: 'vc21', name: '璇玑穴', meridian: 'vc' },
-  '天突': { code: 'vc22', name: '天突穴', meridian: 'vc' },
-  '廉泉': { code: 'vc23', name: '廉泉穴', meridian: 'vc' },
-  '承浆': { code: 'vc24', name: '承浆穴', meridian: 'vc' },
+  '合谷': { code: 'LI4', name: '合谷穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '曲池': { code: 'LI11', name: '曲池穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '手三里': { code: 'LI10', name: '手三里穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '迎香': { code: 'LI20', name: '迎香穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '肩髃': { code: 'LI15', name: '肩髃穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '足三里': { code: 'ST36', name: '足三里穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '天枢': { code: 'ST25', name: '天枢穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '内庭': { code: 'ST44', name: '内庭穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '梁丘': { code: 'ST34', name: '梁丘穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '丰隆': { code: 'ST40', name: '丰隆穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '颊车': { code: 'ST6', name: '颊车穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '三阴交': { code: 'SP6', name: '三阴交穴', meridian: 'SP', meridianZh: '足太阴脾经' },
+  '血海': { code: 'SP10', name: '血海穴', meridian: 'SP', meridianZh: '足太阴脾经' },
+  '阴陵泉': { code: 'SP9', name: '阴陵泉穴', meridian: 'SP', meridianZh: '足太阴脾经' },
+  '公孙': { code: 'SP4', name: '公孙穴', meridian: 'SP', meridianZh: '足太阴脾经' },
+  '神门': { code: 'HT7', name: '神门穴', meridian: 'HT', meridianZh: '手少阴心经' },
+  '少海': { code: 'HT3', name: '少海穴', meridian: 'HT', meridianZh: '手少阴心经' },
+  '后溪': { code: 'SI3', name: '后溪穴', meridian: 'SI', meridianZh: '手太阳小肠经' },
+  '天宗': { code: 'SI11', name: '天宗穴', meridian: 'SI', meridianZh: '手太阳小肠经' },
+  '委中': { code: 'BL40', name: '委中穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '肾俞': { code: 'BL23', name: '肾俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '大肠俞': { code: 'BL25', name: '大肠俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '承山': { code: 'BL57', name: '承山穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '昆仑': { code: 'BL60', name: '昆仑穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '攒竹': { code: 'BL2', name: '攒竹穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '肺俞': { code: 'BL13', name: '肺俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '风门': { code: 'BL12', name: '风门穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '涌泉': { code: 'KI1', name: '涌泉穴', meridian: 'KI', meridianZh: '足少阴肾经' },
+  '太溪': { code: 'KI3', name: '太溪穴', meridian: 'KI', meridianZh: '足少阴肾经' },
+  '照海': { code: 'KI6', name: '照海穴', meridian: 'KI', meridianZh: '足少阴肾经' },
+  '内关': { code: 'PC6', name: '内关穴', meridian: 'PC', meridianZh: '手厥阴心包经' },
+  '大陵': { code: 'PC7', name: '大陵穴', meridian: 'PC', meridianZh: '手厥阴心包经' },
+  '劳宫': { code: 'PC8', name: '劳宫穴', meridian: 'PC', meridianZh: '手厥阴心包经' },
+  '外关': { code: 'TE5', name: '外关穴', meridian: 'TE', meridianZh: '手少阳三焦经' },
+  '翳风': { code: 'TE17', name: '翳风穴', meridian: 'TE', meridianZh: '手少阳三焦经' },
+  '风池': { code: 'GB20', name: '风池穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '肩井': { code: 'GB21', name: '肩井穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '阳陵泉': { code: 'GB34', name: '阳陵泉穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '环跳': { code: 'GB30', name: '环跳穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '风市': { code: 'GB31', name: '风市穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '太冲': { code: 'LR3', name: '太冲穴', meridian: 'LR', meridianZh: '足厥阴肝经' },
+  '期门': { code: 'LR14', name: '期门穴', meridian: 'LR', meridianZh: '足厥阴肝经' },
+  '百会': { code: 'GV20', name: '百会穴', meridian: 'GV', meridianZh: '督脉' },
+  '大椎': { code: 'GV14', name: '大椎穴', meridian: 'GV', meridianZh: '督脉' },
+  '水沟': { code: 'GV26', name: '水沟穴', meridian: 'GV', meridianZh: '督脉' },
+  '命门': { code: 'GV4', name: '命门穴', meridian: 'GV', meridianZh: '督脉' },
+  '印堂': { code: 'GV29', name: '印堂穴', meridian: 'GV', meridianZh: '督脉' },
+  '关元': { code: 'CV4', name: '关元穴', meridian: 'CV', meridianZh: '任脉' },
+  '气海': { code: 'CV6', name: '气海穴', meridian: 'CV', meridianZh: '任脉' },
+  '中脘': { code: 'CV12', name: '中脘穴', meridian: 'CV', meridianZh: '任脉' },
+  '膻中': { code: 'CV17', name: '膻中穴', meridian: 'CV', meridianZh: '任脉' },
+  '太阳': { code: 'EX-HN5', name: '太阳穴', meridian: 'EX', meridianZh: '经外奇穴' },
+  '四神聪': { code: 'EX-HN1', name: '四神聪穴', meridian: 'EX', meridianZh: '经外奇穴' },
+  '安眠': { code: 'EX-HN-Anmian', name: '安眠穴', meridian: 'EX', meridianZh: '经外奇穴' },
+  '腰眼': { code: 'EX-B7', name: '腰眼穴', meridian: 'EX', meridianZh: '经外奇穴' },
+  '中府': { code: 'LU1', name: '中府穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '尺泽': { code: 'LU5', name: '尺泽穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '列缺': { code: 'LU7', name: '列缺穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '太渊': { code: 'LU9', name: '太渊穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '鱼际': { code: 'LU10', name: '鱼际穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '少商': { code: 'LU11', name: '少商穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '承泣': { code: 'ST1', name: '承泣穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '四白': { code: 'ST2', name: '四白穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '地仓': { code: 'ST4', name: '地仓穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '下关': { code: 'ST7', name: '下关穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '头维': { code: 'ST8', name: '头维穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '上巨虚': { code: 'ST37', name: '上巨虚穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '条口': { code: 'ST38', name: '条口穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '太白': { code: 'SP3', name: '太白穴', meridian: 'SP', meridianZh: '足太阴脾经' },
+  '地机': { code: 'SP8', name: '地机穴', meridian: 'SP', meridianZh: '足太阴脾经' },
+  '通里': { code: 'HT5', name: '通里穴', meridian: 'HT', meridianZh: '手少阴心经' },
+  '颧髎': { code: 'SI18', name: '颧髎穴', meridian: 'SI', meridianZh: '手太阳小肠经' },
+  '听宫': { code: 'SI19', name: '听宫穴', meridian: 'SI', meridianZh: '手太阳小肠经' },
+  '睛明': { code: 'BL1', name: '睛明穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '心俞': { code: 'BL15', name: '心俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '肝俞': { code: 'BL18', name: '肝俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '脾俞': { code: 'BL20', name: '脾俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '胃俞': { code: 'BL21', name: '胃俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '次髎': { code: 'BL32', name: '次髎穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '申脉': { code: 'BL62', name: '申脉穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '复溜': { code: 'KI7', name: '复溜穴', meridian: 'KI', meridianZh: '足少阴肾经' },
+  '曲泽': { code: 'PC3', name: '曲泽穴', meridian: 'PC', meridianZh: '手厥阴心包经' },
+  '中渚': { code: 'TE3', name: '中渚穴', meridian: 'TE', meridianZh: '手少阳三焦经' },
+  '丝竹空': { code: 'TE23', name: '丝竹空穴', meridian: 'TE', meridianZh: '手少阳三焦经' },
+  '瞳子髎': { code: 'GB1', name: '瞳子髎穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '听会': { code: 'GB2', name: '听会穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '率谷': { code: 'GB8', name: '率谷穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '悬钟': { code: 'GB39', name: '悬钟穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '足临泣': { code: 'GB41', name: '足临泣穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '行间': { code: 'LR2', name: '行间穴', meridian: 'LR', meridianZh: '足厥阴肝经' },
+  '风府': { code: 'GV16', name: '风府穴', meridian: 'GV', meridianZh: '督脉' },
+  '上星': { code: 'GV23', name: '上星穴', meridian: 'GV', meridianZh: '督脉' },
+  '中极': { code: 'CV3', name: '中极穴', meridian: 'CV', meridianZh: '任脉' },
+  '神阙': { code: 'CV8', name: '神阙穴', meridian: 'CV', meridianZh: '任脉' },
+  '天突': { code: 'CV22', name: '天突穴', meridian: 'CV', meridianZh: '任脉' },
+  '鱼腰': { code: 'EX-HN4', name: '鱼腰穴', meridian: 'EX', meridianZh: '经外奇穴' },
+  '子宫': { code: 'EX-CA1', name: '子宫穴', meridian: 'EX', meridianZh: '经外奇穴' },
+  '落枕穴': { code: 'EX-UE7', name: '落枕穴穴', meridian: 'EX', meridianZh: '经外奇穴' },
+  '膝眼': { code: 'EX-LE5', name: '膝眼穴', meridian: 'EX', meridianZh: '经外奇穴' },
+  '鹤顶': { code: 'EX-LE2', name: '鹤顶穴', meridian: 'EX', meridianZh: '经外奇穴' },
+  '云门': { code: 'LU2', name: '云门穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '天府': { code: 'LU3', name: '天府穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '侠白': { code: 'LU4', name: '侠白穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '孔最': { code: 'LU6', name: '孔最穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '经渠': { code: 'LU8', name: '经渠穴', meridian: 'LU', meridianZh: '手太阴肺经' },
+  '天池': { code: 'PC1', name: '天池穴', meridian: 'PC', meridianZh: '手厥阴心包经' },
+  '天泉': { code: 'PC2', name: '天泉穴', meridian: 'PC', meridianZh: '手厥阴心包经' },
+  '郄门': { code: 'PC4', name: '郄门穴', meridian: 'PC', meridianZh: '手厥阴心包经' },
+  '间使': { code: 'PC5', name: '间使穴', meridian: 'PC', meridianZh: '手厥阴心包经' },
+  '中冲': { code: 'PC9', name: '中冲穴', meridian: 'PC', meridianZh: '手厥阴心包经' },
+  '极泉': { code: 'HT1', name: '极泉穴', meridian: 'HT', meridianZh: '手少阴心经' },
+  '青灵': { code: 'HT2', name: '青灵穴', meridian: 'HT', meridianZh: '手少阴心经' },
+  '灵道': { code: 'HT4', name: '灵道穴', meridian: 'HT', meridianZh: '手少阴心经' },
+  '阴郄': { code: 'HT6', name: '阴郄穴', meridian: 'HT', meridianZh: '手少阴心经' },
+  '少府': { code: 'HT8', name: '少府穴', meridian: 'HT', meridianZh: '手少阴心经' },
+  '少冲': { code: 'HT9', name: '少冲穴', meridian: 'HT', meridianZh: '手少阴心经' },
+  '商阳': { code: 'LI1', name: '商阳穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '二间': { code: 'LI2', name: '二间穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '三间': { code: 'LI3', name: '三间穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '阳溪': { code: 'LI5', name: '阳溪穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '偏历': { code: 'LI6', name: '偏历穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '温溜': { code: 'LI7', name: '温溜穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '下廉': { code: 'LI8', name: '下廉穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '上廉': { code: 'LI9', name: '上廉穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '肘髎': { code: 'LI12', name: '肘髎穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '手五里': { code: 'LI13', name: '手五里穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '臂臑': { code: 'LI14', name: '臂臑穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '巨骨': { code: 'LI16', name: '巨骨穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '天鼎': { code: 'LI17', name: '天鼎穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '扶突': { code: 'LI18', name: '扶突穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '口禾髎': { code: 'LI19', name: '口禾髎穴', meridian: 'LI', meridianZh: '手阳明大肠经' },
+  '阳池': { code: 'TE4', name: '阳池穴', meridian: 'TE', meridianZh: '手少阳三焦经' },
+  '支沟': { code: 'TE6', name: '支沟穴', meridian: 'TE', meridianZh: '手少阳三焦经' },
+  '关冲': { code: 'TE1', name: '关冲穴', meridian: 'TE', meridianZh: '手少阳三焦经' },
+  '腕骨': { code: 'SI4', name: '腕骨穴', meridian: 'SI', meridianZh: '手太阳小肠经' },
+  '养老': { code: 'SI6', name: '养老穴', meridian: 'SI', meridianZh: '手太阳小肠经' },
+  '小海': { code: 'SI8', name: '小海穴', meridian: 'SI', meridianZh: '手太阳小肠经' },
+  '然谷': { code: 'KI2', name: '然谷穴', meridian: 'KI', meridianZh: '足少阴肾经' },
+  '阴谷': { code: 'KI10', name: '阴谷穴', meridian: 'KI', meridianZh: '足少阴肾经' },
+  '曲泉': { code: 'LR8', name: '曲泉穴', meridian: 'LR', meridianZh: '足厥阴肝经' },
+  '章门': { code: 'LR13', name: '章门穴', meridian: 'LR', meridianZh: '足厥阴肝经' },
+  '大横': { code: 'SP15', name: '大横穴', meridian: 'SP', meridianZh: '足太阴脾经' },
+  '解溪': { code: 'ST41', name: '解溪穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '丘墟': { code: 'GB40', name: '丘墟穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '膈俞': { code: 'BL17', name: '膈俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '大杼': { code: 'BL11', name: '大杼穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '天柱': { code: 'BL10', name: '天柱穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '厥阴俞': { code: 'BL14', name: '厥阴俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '胆俞': { code: 'BL19', name: '胆俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '三焦俞': { code: 'BL22', name: '三焦俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '膀胱俞': { code: 'BL28', name: '膀胱俞穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '志室': { code: 'BL52', name: '志室穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '至阴': { code: 'BL67', name: '至阴穴', meridian: 'BL', meridianZh: '足太阳膀胱经' },
+  '神庭': { code: 'GV24', name: '神庭穴', meridian: 'GV', meridianZh: '督脉' },
+  '哑门': { code: 'GV15', name: '哑门穴', meridian: 'GV', meridianZh: '督脉' },
+  '腰阳关': { code: 'GV3', name: '腰阳关穴', meridian: 'GV', meridianZh: '督脉' },
+  '廉泉': { code: 'CV23', name: '廉泉穴', meridian: 'CV', meridianZh: '任脉' },
+  '曲骨': { code: 'CV2', name: '曲骨穴', meridian: 'CV', meridianZh: '任脉' },
+  '阳白': { code: 'GB14', name: '阳白穴', meridian: 'GB', meridianZh: '足少阳胆经' },
+  '人迎': { code: 'ST9', name: '人迎穴', meridian: 'ST', meridianZh: '足阳明胃经' },
+  '侠溪': { code: 'GB43', name: '侠溪穴', meridian: 'GB', meridianZh: '足少阳胆经' },
 }
 
 /** 根据穴位名查 3D 穴位代码 */
 export function getAcupoint3D(name: string): AcupointMapping | null {
-  // 去掉'穴'字
   const cleanName = name.replace(/穴$/, '')
   return ACUPOINT_MAP[cleanName] || null
 }
@@ -110,3 +194,6 @@ export function getAcupoint3D(name: string): AcupointMapping | null {
 export function hasAcupoint3D(name: string): boolean {
   return getAcupoint3D(name) !== null
 }
+
+/** 统计 */
+export const TOTAL_ACUPOINTS_3D = 161
