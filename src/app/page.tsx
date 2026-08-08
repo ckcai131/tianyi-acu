@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { calculateNow, calculateAll } from '@/lib/engine'
+import { hasAcupoint3D, getAcupoint3D } from '@/lib/acupoint-map'
 
 // 12 时辰选项 (中医用户视角)
 const SHICHEN_OPTIONS = [
@@ -247,6 +248,10 @@ export default function HomePage() {
 
 // ─── 三穴核心卡片 ───
 function NeedleCard({ index, label, acupoint, jingLuo }: { index: string; label: string; acupoint?: string; jingLuo?: string }) {
+  const cleanName = acupoint?.replace(/穴$/, '') || ''
+  const mapping = cleanName ? getAcupoint3D(cleanName) : null
+  const has3D = mapping !== null
+
   return (
     <div className="gold-deco p-3 sm:p-4 text-center overflow-hidden">
       <div className="text-[10px] sm:text-xs font-semibold tracking-widest mb-1.5" style={{color: 'var(--gold)'}}>
@@ -259,6 +264,33 @@ function NeedleCard({ index, label, acupoint, jingLuo }: { index: string; label:
       <div className="text-[10px] sm:text-xs mt-1 tracking-wider" style={{color: 'var(--muted)'}}>
         {jingLuo || '—'}
       </div>
+      {acupoint && (
+        has3D ? (
+          <a
+            href={`3d/?point=${mapping!.code}&name=${encodeURIComponent(acupoint)}穴&meridian=${encodeURIComponent(jingLuo || '')}`}
+            className="inline-block mt-2 text-[10px] sm:text-xs px-2 py-0.5 rounded-full transition"
+            style={{
+              background: 'var(--gold)',
+              color: '#fbf6ec',
+              textDecoration: 'none',
+            }}
+          >
+            🎯 3D 查看
+          </a>
+        ) : (
+          <div
+            className="inline-block mt-2 text-[10px] sm:text-xs px-2 py-0.5 rounded-full"
+            style={{
+              background: 'transparent',
+              color: 'var(--muted)',
+              border: '1px dashed var(--line)',
+            }}
+            title="此穴位不在 3D 模型中"
+          >
+            · 仅文字 ·
+          </div>
+        )
+      )}
     </div>
   )
 }
