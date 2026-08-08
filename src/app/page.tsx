@@ -130,21 +130,21 @@ export default function HomePage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
         <MethodCard title="① 值符" color="gold">
           <Row k="值日经络" v={result.zhiFu?.actualJingLuo} />
-          <Row k="值符穴" v={result.zhiFu?.acupoint} acc />
+          <Row k="值符穴" v={result.zhiFu?.acupoint ? `${result.zhiFu.acupoint}穴` : undefined} acc />
           <Row k="穴性" v={result.zhiFu?.pointNature} />
           <Row k="规则" v={result.zhiFu?.rule} />
         </MethodCard>
 
         <MethodCard title="② 值使" color="gold">
           <Row k="经络" v={result.zhiShi?.jingLuo} />
-          <Row k="值使穴" v={result.zhiShi?.acupoint} acc />
+          <Row k="值使穴" v={result.zhiShi?.acupoint ? `${result.zhiShi.acupoint}穴` : undefined} acc />
           <Row k="穴性" v={result.zhiShi?.pointNature} />
           <Row k="五行" v={result.zhiShi?.wuXing} />
         </MethodCard>
 
         <MethodCard title={`③ 第三针 (${result.zhiYangYin?.mode})`} color="gold">
           <Row k="经络" v={result.zhiYangYin?.jingLuo} />
-          <Row k="穴位" v={result.zhiYangYin?.acupoint} acc />
+          <Row k="穴位" v={result.zhiYangYin?.acupoint ? `${result.zhiYangYin.acupoint}穴` : undefined} acc />
           <Row k="穴性" v={result.zhiYangYin?.pointNature} />
           <Row k="日阴阳" v={result.zhiYangYin?.dayYinYang} />
         </MethodCard>
