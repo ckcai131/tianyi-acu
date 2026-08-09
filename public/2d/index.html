@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>奇门通玄 · 经穴定位图</title>
+  <title>奇门通玄 · 经穴详情</title>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -34,120 +34,63 @@
       letter-spacing: 2px;
     }
 
+    /* 主布局: 左侧图片 + 右侧信息 */
     .layout {
       display: grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: minmax(280px, 420px) 1fr;
       gap: 0;
       min-height: calc(100vh - 50px);
     }
-    /* sidebar 移到左侧 (DOM 顺序不变, 用 grid 调换) */
-    .sidebar {
-      order: 1;
-    }
-    .canvas-area {
-      order: 2;
-    }
 
-    .canvas-area {
+    /* 左侧: 穴位定位图 */
+    .image-area {
       background: #f5efe3;
-      padding: 16px;
-      padding-top: 60px;
-      position: relative;
+      padding: 24px 16px;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      overflow: visible;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      border-right: 1px solid #d9cfb9;
     }
-
-    .view-toggle {
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 4px;
-      background: #fbf6e9;
-      border: 1px solid #d9cfb9;
-      border-radius: 8px;
-      padding: 4px;
-      z-index: 10;
-      box-shadow: 0 1px 4px rgba(168, 98, 31, 0.1);
-    }
-    .view-toggle button {
-      background: transparent;
-      border: none;
-      color: #7a6b58;
-      padding: 4px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 12px;
-      font-family: inherit;
-    }
-    .view-toggle button.active {
-      background: #a8621f;
-      color: #fbf6ec;
-    }
-
-    .body-svg-container {
+    .image-frame {
       background: #fffefb;
       border: 1px solid #d9cfb9;
       border-radius: 8px;
-      padding: 8px;
+      padding: 16px;
       box-shadow: 0 2px 8px rgba(168, 98, 31, 0.05);
-      position: relative;
-      width: auto;
-      max-width: 420px;
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      overflow: visible;
+      max-width: 380px;
+      width: 100%;
     }
-    .body-svg-container svg {
+    .image-frame img {
       display: block;
       width: 100%;
       height: auto;
+      border-radius: 4px;
+    }
+    .image-caption {
+      margin-top: 12px;
+      text-align: center;
+      color: #7a6b58;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    .no-image {
+      width: 240px;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fdfaf3;
+      border: 1px dashed #d9cfb9;
+      border-radius: 8px;
+      color: #a89684;
+      font-size: 13px;
     }
 
-    /* 穴位标记 */
-    .acupoint-marker {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      margin-left: -7px;
-      margin-top: -7px;
-      border-radius: 50%;
-      background: rgba(168, 98, 31, 0.3);
-      border: 1.5px solid #a8621f;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      pointer-events: auto;
-    }
-    .acupoint-marker:hover {
-      background: rgba(168, 98, 31, 0.6);
-      transform: scale(1.3);
-    }
-    .acupoint-marker.highlight {
-      background: #b8392e;
-      border-color: #b8392e;
-      width: 22px;
-      height: 22px;
-      margin-left: -11px;
-      margin-top: -11px;
-      box-shadow: 0 0 0 4px rgba(184, 57, 46, 0.3), 0 0 12px rgba(184, 57, 46, 0.6);
-      animation: pulse 1.6s ease-in-out infinite;
-      z-index: 5;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 4px rgba(184, 57, 46, 0.3), 0 0 12px rgba(184, 57, 46, 0.6); }
-      50% { box-shadow: 0 0 0 10px rgba(184, 57, 46, 0.1), 0 0 18px rgba(184, 57, 46, 0.8); }
-    }
-
-    /* 侧栏 */
-    .sidebar {
+    /* 右侧: 信息栏 */
+    .info-area {
       background: #fbf6e9;
-      border-right: 1px solid #d9cfb9;
-      padding: 16px;
+      padding: 20px;
       overflow-y: auto;
       max-height: calc(100vh - 50px);
     }
@@ -156,12 +99,17 @@
       background: #fdfaf3;
       border: 1px solid #d9cfb9;
       border-radius: 8px;
-      padding: 14px;
-      margin-bottom: 12px;
+      padding: 18px 20px;
+    }
+
+    .info-card .title-block {
+      border-bottom: 1px solid #e8dcc4;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
     }
     .info-card .acupoint {
       color: #b8392e;
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 700;
       margin-bottom: 4px;
     }
@@ -173,78 +121,120 @@
     }
     .info-card .meridian {
       color: #a8621f;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
-      padding: 4px 10px;
+      padding: 4px 12px;
       background: #f5e8c5;
       border-radius: 12px;
       display: inline-block;
-      margin-bottom: 10px;
+    }
+
+    .info-card .section {
+      margin-top: 14px;
     }
     .info-card .label {
-      color: #7a6b58;
+      color: #a8621f;
       font-size: 11px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-top: 10px;
-      margin-bottom: 4px;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+      font-weight: 600;
     }
     .info-card .text {
       color: #2a221a;
-      font-size: 13px;
-      line-height: 1.6;
+      font-size: 14px;
+      line-height: 1.7;
     }
 
     .info-card .functions li {
       list-style: none;
       color: #2a221a;
-      font-size: 13px;
-      padding: 3px 0;
-      padding-left: 12px;
+      font-size: 14px;
+      padding: 3px 0 3px 14px;
       position: relative;
     }
     .info-card .functions li::before {
       content: '·';
       position: absolute;
-      left: 0;
+      left: 4px;
       color: #a8621f;
       font-weight: 700;
     }
 
-    .warn-box {
-      background: #f5dcd3;
-      color: #a8331c;
-      font-size: 11px;
-      padding: 8px 10px;
-      border-radius: 6px;
-      margin-top: 10px;
-    }
-
-    /* 适用情形 标签 */
+    /* 适用情形标签 */
     .ind-tag {
       display: inline-block;
       background: #faf5ea;
       border: 1px solid #e8dcc4;
       color: #5a4a3a;
-      padding: 2px 8px;
-      margin: 2px 3px 2px 0;
+      padding: 3px 10px;
+      margin: 2px 4px 2px 0;
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 13px;
       line-height: 1.5;
     }
 
-    /* 数据源标签 */
+    /* 警告框 */
+    .warn-box {
+      background: #f5dcd3;
+      color: #a8331c;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    /* 类别标签 */
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .category-tag {
+      display: inline-block;
+      background: #e8dcc4;
+      color: #7a5a2a;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    /* 古籍摘要 (引用风格) */
+    .classical {
+      background: #faf5ea;
+      border-left: 3px solid #a8621f;
+      padding: 8px 12px;
+      font-style: italic;
+      color: #5a4a3a;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* 来源信息 */
+    .sources {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px dashed #d9cfb9;
+      font-size: 11px;
+      color: #888;
+    }
     .source-tag {
       display: inline-block;
       background: #f0e9d8;
       color: #7a5a2a;
-      padding: 1px 6px;
+      padding: 2px 8px;
       margin-right: 4px;
       border-radius: 3px;
       font-size: 10px;
       font-weight: 500;
     }
+    .source-link {
+      color: #a8621f;
+      text-decoration: none;
+    }
+    .source-link:hover { text-decoration: underline; }
 
+    /* 加载 */
     .loading {
       position: fixed;
       inset: 0;
@@ -265,33 +255,37 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .empty-state {
-      color: #a89684;
+    /* 错误状态 */
+    .error-state {
+      color: #a8331c;
       text-align: center;
-      padding: 32px 12px;
-      font-size: 13px;
+      padding: 48px 16px;
+      font-size: 14px;
       line-height: 1.7;
     }
 
-    /* 移动端 */
+    /* 移动端: 单列布局 */
     @media (max-width: 768px) {
       .layout {
         grid-template-columns: 1fr;
       }
-      .sidebar {
-        border-left: none;
-        border-top: 1px solid #d9cfb9;
+      .image-area {
+        border-right: none;
+        border-bottom: 1px solid #d9cfb9;
+        padding: 16px;
+      }
+      .image-frame {
+        max-width: 280px;
+      }
+      .info-area {
+        padding: 16px;
         max-height: none;
       }
-      .body-svg-container svg {
-        max-width: 100%;
-        width: 100%;
-      }
       .info-card {
-        padding: 10px;
+        padding: 14px 16px;
       }
       .info-card .acupoint {
-        font-size: 18px;
+        font-size: 22px;
       }
     }
   </style>
@@ -304,26 +298,15 @@
 
 <div class="header">
   <a href="../" class="back">← 返回推算结果</a>
-  <div class="title">奇门通玄 · 经穴定位图</div>
+  <div class="title">奇门通玄 · 经穴详情</div>
 </div>
 
 <div class="layout">
-  <div class="canvas-area">
-    <!-- 视图切换 (front/back) -->
-    <div class="view-toggle">
-      <button data-view="front" class="active">前</button>
-      <button data-view="back">后</button>
-    </div>
-
-    <div class="body-svg-container" id="body-container">
-      <!-- SVG 将被注入 -->
-    </div>
+  <div class="image-area" id="image-area">
+    <!-- 穴位定位图将由 JS 注入 -->
   </div>
-
-  <div class="sidebar" id="sidebar">
-    <div class="empty-state">
-      点击人体上的穴位标记，查看详细信息
-    </div>
+  <div class="info-area" id="info-area">
+    <!-- 穴位信息将由 JS 注入 -->
   </div>
 </div>
 
