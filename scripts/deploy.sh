@@ -15,6 +15,7 @@ TS=$(date +%Y%m%d_%H%M%S)
 
 echo "==> 部署静态文件..."
 cp "$OUT_DIR/acupoints-index.min.json" "$DEST/"
+[ -f "$OUT_DIR/shikong-fangwei.json" ] && cp "$OUT_DIR/shikong-fangwei.json" "$DEST/"
 cp "$OUT_DIR/index.html" "$DEST/"
 [ -d "$OUT_DIR/2d" ] && cp -rT "$OUT_DIR/2d" "$DEST/2d"
 [ -d "$OUT_DIR/qihuang-images" ] && cp -rT "$OUT_DIR/qihuang-images" "$DEST/qihuang-images"

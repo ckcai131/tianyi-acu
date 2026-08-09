@@ -338,6 +338,9 @@ export default function HomePage() {
         </MethodCard>
       </div>
 
+      {/* ── 时空方位 · 八方九星 ── */}
+      <ShiKongFangWei dayGanZhi={result.dayGanZhi} dayYinYang={result.dayYinYang} />
+
       {/* ── 免责声明 ── */}
       <footer className="text-center mt-8 pt-5" style={{borderTop: '1px solid var(--line)'}}>
         <p className="text-[11px] tracking-wider mb-1" style={{color: 'var(--muted)'}}>
@@ -441,6 +444,148 @@ function DetailRow({ k, v, acc }: { k: string; v?: string; acc?: boolean }) {
             style={{color: acc ? 'var(--vermilion)' : 'var(--ink)'}}>
         {v || '—'}
       </span>
+    </div>
+  )
+}
+
+// ─── 时空方位 · 八方九星 ───
+type FangWei = {
+  方: string
+  门: string
+  星: string
+}
+type FangWeiEntry = {
+  页: string
+  中宫星: string
+  喜神方: string
+  大吉方: string
+  八方: FangWei[]
+}
+type FangWeiMap = Record<string, Record<'阳遁' | '阴遁', FangWeiEntry>>
+
+function ShiKongFangWei({ dayGanZhi, dayYinYang }: { dayGanZhi: string; dayYinYang: '阳' | '阴' }) {
+  const [data, setData] = useState<FangWeiEntry | null>(null)
+  const [page, setPage] = useState<string>('')
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('/TP/tianyi-acu/shikong-fangwei.json')
+      .then(r => r.json() as Promise<FangWeiMap>)
+      .then(map => {
+        if (cancelled) return
+        const entry = map[dayGanZhi]?.[dayYinYang === '阳' ? '阳遁' : '阴遁']
+        if (entry) {
+          setData(entry)
+          setPage(entry.页)
+        } else {
+          setData(null)
+        }
+      })
+      .catch(() => { if (!cancelled) setData(null) })
+    return () => { cancelled = true }
+  }, [dayGanZhi, dayYinYang])
+
+  if (!data) {
+    return (
+      <div className="card-base p-4 sm:p-5 mt-5 text-center text-sm" style={{color: 'var(--muted)'}}>
+        加载时空方位数据中...
+      </div>
+    )
+  }
+
+  // 八方按洛书九宫布局:
+  //   [西北] [ 北 ] [东北]
+  //   [ 西 ]  中宫 [ 东 ]
+  //   [西南] [ 南 ] [东南]
+  const layout: (FangWei | null)[][] = [
+    [data.八方[7], data.八方[0], data.八方[1]],  // 西北 北 东北
+    [data.八方[6], null,         data.八方[2]],  // 西  中 东
+    [data.八方[5], data.八方[4], data.八方[3]],  // 西南 南 东南
+  ]
+
+  return (
+    <div className="card-base p-4 sm:p-5 mt-5">
+      <div className="flex items-baseline justify-between mb-3 flex-wrap gap-2">
+        <div className="text-label" style={{color: 'var(--gold-2)'}}>
+          时空方位 · 八方九星
+        </div>
+        <div className="text-[10px] sm:text-xs" style={{color: 'var(--muted)'}}>
+          日柱 {dayGanZhi} · {dayYinYang === '阳' ? '阳遁' : '阴遁'} · 原书页 {page}
+        </div>
+      </div>
+
+      {/* 洛书九宫格 */}
+      <div className="grid grid-cols-3 gap-1.5 mb-4 mx-auto" style={{maxWidth: '480px'}}>
+        {layout.flat().map((cell, idx) => {
+          if (!cell) {
+            // 中宫
+            return (
+              <div key={`center-${idx}`}
+                   className="rounded-lg p-2 text-center"
+                   style={{
+                     background: 'linear-gradient(135deg, var(--gold-soft) 0%, #f0d99b 100%)',
+                     border: '1px solid var(--gold-line)',
+                   }}>
+                <div className="text-[10px] sm:text-xs font-semibold tracking-widest"
+                     style={{color: 'var(--gold-2)'}}>中宫</div>
+                <div className="text-base sm:text-lg font-bold mt-1"
+                     style={{color: 'var(--vermilion)'}}>{data.中宫星}</div>
+              </div>
+            )
+          }
+          const isXiShen = data.喜神方.includes(cell.方)
+          const isDaJi = data.大吉方.includes(cell.方)
+          return (
+            <div key={`${cell.方}-${idx}`}
+                 className="rounded-lg p-2 text-center transition"
+                 style={{
+                   background: isDaJi
+                     ? 'linear-gradient(135deg, #d6e8d4 0%, #a8c8a4 100%)'
+                     : isXiShen
+                     ? 'linear-gradient(135deg, #fff5d8 0%, #f0d99b 100%)'
+                     : 'var(--card)',
+                   border: isDaJi
+                     ? '1px solid #4a7a48'
+                     : isXiShen
+                     ? '1px solid var(--gold-line)'
+                     : '1px solid var(--line)',
+                 }}>
+              <div className="text-[10px] sm:text-xs font-semibold tracking-widest"
+                   style={{color: isDaJi ? '#2d5a2a' : 'var(--gold-2)'}}>
+                {cell.方}{isXiShen ? ' · 喜神' : ''}{isDaJi ? ' ✓' : ''}
+              </div>
+              <div className="text-base sm:text-lg font-bold mt-0.5"
+                   style={{color: isDaJi ? '#2d5a2a' : 'var(--vermilion)'}}>
+                {cell.门}
+              </div>
+              <div className="text-[10px] sm:text-xs mt-0.5"
+                   style={{color: isDaJi ? '#2d5a2a' : 'var(--ink)'}}>
+                {cell.星}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* 喜神方 / 大吉方 */}
+      <div className="flex flex-col sm:flex-row gap-2 text-xs sm:text-sm">
+        <div className="flex-1 rounded-lg p-2 text-center"
+             style={{background: 'linear-gradient(135deg, #fff5d8 0%, #f0d99b 100%)',
+                     border: '1px solid var(--gold-line)'}}>
+          <span className="font-semibold" style={{color: 'var(--gold-2)'}}>喜 神 方：</span>
+          <span className="font-bold ml-1" style={{color: 'var(--vermilion)'}}>{data.喜神方}</span>
+        </div>
+        <div className="flex-1 rounded-lg p-2 text-center"
+             style={{background: 'linear-gradient(135deg, #d6e8d4 0%, #a8c8a4 100%)',
+                     border: '1px solid #4a7a48'}}>
+          <span className="font-semibold" style={{color: '#2d5a2a'}}>大 吉 方：</span>
+          <span className="font-bold ml-1" style={{color: '#2d5a2a'}}>{data.大吉方}</span>
+        </div>
+      </div>
+
+      <div className="text-[10px] mt-2 text-center" style={{color: 'var(--muted)'}}>
+        数据来源：神针心传·奇门通玄针法（10 处校勘已统一）
+      </div>
     </div>
   )
 }
