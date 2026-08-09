@@ -465,7 +465,6 @@ type FangWeiMap = Record<string, Record<'阳遁' | '阴遁', FangWeiEntry>>
 
 function ShiKongFangWei({ dayGanZhi, dayYinYang }: { dayGanZhi: string; dayYinYang: '阳' | '阴' }) {
   const [data, setData] = useState<FangWeiEntry | null>(null)
-  const [page, setPage] = useState<string>('')
 
   useEffect(() => {
     let cancelled = false
@@ -476,7 +475,6 @@ function ShiKongFangWei({ dayGanZhi, dayYinYang }: { dayGanZhi: string; dayYinYa
         const entry = map[dayGanZhi]?.[dayYinYang === '阳' ? '阳遁' : '阴遁']
         if (entry) {
           setData(entry)
-          setPage(entry.页)
         } else {
           setData(null)
         }
@@ -510,7 +508,7 @@ function ShiKongFangWei({ dayGanZhi, dayYinYang }: { dayGanZhi: string; dayYinYa
           时空方位 · 八方九星
         </div>
         <div className="text-[10px] sm:text-xs" style={{color: 'var(--muted)'}}>
-          日柱 {dayGanZhi} · {dayYinYang === '阳' ? '阳遁' : '阴遁'} · 原书页 {page}
+          日柱 {dayGanZhi} · {dayYinYang === '阳' ? '阳遁' : '阴遁'}
         </div>
       </div>
 
@@ -581,10 +579,6 @@ function ShiKongFangWei({ dayGanZhi, dayYinYang }: { dayGanZhi: string; dayYinYa
           <span className="font-semibold" style={{color: '#2d5a2a'}}>大 吉 方：</span>
           <span className="font-bold ml-1" style={{color: '#2d5a2a'}}>{data.大吉方}</span>
         </div>
-      </div>
-
-      <div className="text-[10px] mt-2 text-center" style={{color: 'var(--muted)'}}>
-        数据来源：神针心传·奇门通玄针法（10 处校勘已统一）
       </div>
     </div>
   )
