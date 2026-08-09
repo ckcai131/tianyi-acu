@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { calculateNow, calculateAll } from '@/lib/engine'
 import { loadAcupointMap, getAcupointFromMap } from '@/lib/acupoint-finder'
 
@@ -40,6 +40,10 @@ export default function HomePage() {
   const [mounted, setMounted] = useState(false)
   const [date, setDate] = useState('')
   const [shichenValue, setShichenValue] = useState(19)
+  const [userEdited, setUserEdited] = useState(false)
+  // ref 追踪上一次值, 避免首次挂载触发不必要的重算
+  const prevDate = useRef<string>('')
+  const prevShichen = useRef<number>(-1)
 
   useEffect(() => {
     setMounted(true)
@@ -47,18 +51,59 @@ export default function HomePage() {
     const yyyy = d.getFullYear()
     const mm = String(d.getMonth() + 1).padStart(2, '0')
     const dd = String(d.getDate()).padStart(2, '0')
-    setDate(`${yyyy}-${mm}-${dd}`)
-    setShichenValue(hourToShichenStart(d.getHours()))
+    const todayDate = `${yyyy}-${mm}-${dd}`
+    const todayShichen = hourToShichenStart(d.getHours())
+    setDate(todayDate)
+    setShichenValue(todayShichen)
+    // 关键: 设置 ref 为初始值, 避免下面的 useEffect 误触发"用户编辑"
+    prevDate.current = todayDate
+    prevShichen.current = todayShichen
     setResult(calculateNow())
-    const id = setInterval(() => setResult(calculateNow()), 30000)
+    // 只有用户没修改过日期/时辰时, 才每 30 秒自动刷新当前时间结果
+    const id = setInterval(() => {
+      if (!userEdited) setResult(calculateNow())
+    }, 30000)
     return () => clearInterval(id)
-  }, [])
+  }, [userEdited])
 
   const handleCalc = () => {
     if (!date) return
     const [yyyy, mm, dd] = date.split('-').map(Number)
     setResult(calculateAll(yyyy, mm, dd, shichenValue, 0))
   }
+
+  // 恢复当前真实时间 (清除用户编辑标记)
+  const resetToNow = () => {
+    setUserEdited(false)
+    const d = new Date()
+    const yyyy = d.getFullYear()
+    const mm = String(d.getMonth() + 1).padStart(2, '0')
+    const dd = String(d.getDate()).padStart(2, '0')
+    setDate(`${yyyy}-${mm}-${dd}`)
+    setShichenValue(hourToShichenStart(d.getHours()))
+    setResult(calculateNow())
+  }
+
+  // 日期或时辰变化时自动重算 (debounce 200ms, 避免输入时频繁计算)
+  // 用 ref 追踪上一次的 date/shichenValue, 只有真正变化时才重算
+  useEffect(() => {
+    if (!mounted || !date) return
+    // 首次挂载 (或值没真正变化) - 跳过
+    if (prevDate.current === date && prevShichen.current === shichenValue) return
+    prevDate.current = date
+    prevShichen.current = shichenValue
+
+    const id = setTimeout(() => {
+      const [yyyy, mm, dd] = date.split('-').map(Number)
+      if (yyyy && mm && dd) {
+        const r = calculateAll(yyyy, mm, dd, shichenValue, 0)
+        console.log('[auto-recalc]', { date, shichenValue, hourZhi: r.hourZhi, hourGanZhi: r.hourGanZhi })
+        setResult(r)
+        setUserEdited(true)
+      }
+    }, 200)
+    return () => clearTimeout(id)
+  }, [date, shichenValue, mounted])
 
   if (!mounted || !result) {
     return (
@@ -112,9 +157,15 @@ export default function HomePage() {
               ))}
             </select>
           </div>
-          <button onClick={handleCalc} className="btn-primary whitespace-nowrap">
-            推 算 →
-          </button>
+          {userEdited && (
+            <button
+              onClick={resetToNow}
+              className="btn-secondary whitespace-nowrap"
+              title="恢复为当前真实时间"
+            >
+              ⏱ 当前
+            </button>
+          )}
         </div>
       </div>
 
