@@ -23,17 +23,15 @@
   let currentView = 'front';
   let targetInfo = null;
   let svgScale = 1;          // SVG 实际渲染宽度 / viewBox 宽度
+  // 当前 SVG 实际渲染尺寸 (用于缩放)
+  let svgRenderScale = 1;
   const viewFiles = {
     front: 'body_front.svg',
     back: 'body_back.svg',
-    left: 'body_left.svg',
-    right: 'body_right.svg',
   };
   const viewBoxMap = {
     front: { w: 200, h: 580 },
     back:  { w: 200, h: 580 },
-    left:  { w: 200, h: 380 },
-    right: { w: 200, h: 380 },
   };
 
   // ─── 加载穴位数据 ───
