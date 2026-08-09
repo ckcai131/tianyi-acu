@@ -379,7 +379,13 @@ function NeedleCard({ index, label, acupoint, jingLuo }: { index: string; label:
   const has3D = checked && mapping !== null
 
   return (
-    <div className="gold-deco p-3 sm:p-4 text-center overflow-hidden">
+    <a
+      href={acupoint ? linkUrl : '#'}
+      onClick={acupoint ? undefined : (e) => e.preventDefault()}
+      className="gold-deco p-3 sm:p-4 text-center overflow-hidden block no-underline transition hover:shadow-lg hover:scale-[1.02] cursor-pointer"
+      style={{textDecoration: 'none', color: 'inherit'}}
+      title={has3D ? `查看 ${acupoint} 详情和经穴图` : `查看 ${acupoint} 详情`}
+    >
       <div className="text-[10px] sm:text-xs font-semibold tracking-widest mb-1.5" style={{color: 'var(--gold)'}}>
         {index} {label}
       </div>
@@ -391,21 +397,18 @@ function NeedleCard({ index, label, acupoint, jingLuo }: { index: string; label:
         {jingLuo || '—'}
       </div>
       {acupoint && (
-        <a
-          href={linkUrl}
-          className="inline-block mt-2 text-[10px] sm:text-xs px-2 py-0.5 rounded-full transition"
+        <span
+          className="inline-block mt-2 text-[10px] sm:text-xs px-2 py-0.5 rounded-full"
           style={{
             background: has3D ? 'var(--gold)' : 'transparent',
             color: has3D ? '#fbf6ec' : 'var(--muted)',
             border: has3D ? 'none' : '1px dashed var(--line)',
-            textDecoration: 'none',
           }}
-          title={has3D ? '查看经穴图' : '此穴位未收录经穴图, 仅跳转详情'}
         >
           {has3D ? '📍 经穴图' : '· 仅文字 ·'}
-        </a>
+        </span>
       )}
-    </div>
+    </a>
   )
 }
 
