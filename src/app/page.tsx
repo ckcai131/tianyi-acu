@@ -82,6 +82,23 @@ export default function HomePage() {
     setDate(`${yyyy}-${mm}-${dd}`)
     setShichenValue(hourToShichenStart(d.getHours()))
     setResult(calculateNow())
+    // 滚动到顶部
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  // 点击"今日大吉时"按钮: 切换到对应时辰并滚动到顶部
+  // 吉时是地支名 (子/丑/寅/卯/辰/巳/午/未/申/酉/戌/亥), 转为对应小时起始值
+  const jumpToShiChen = (zhi: string) => {
+    const zhiToHour: Record<string, number> = {
+      '子': 23, '丑': 1, '寅': 3, '卯': 5, '辰': 7, '巳': 9,
+      '午': 11, '未': 13, '申': 15, '酉': 17, '戌': 19, '亥': 21,
+    }
+    const hour = zhiToHour[zhi]
+    if (hour !== undefined) {
+      setShichenValue(hour)
+      // 滚动到顶部
+      if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   // 日期或时辰变化时自动重算 (debounce 200ms, 避免输入时频繁计算)
@@ -266,22 +283,27 @@ export default function HomePage() {
           <div className="h-px w-6 bg-gold-line"></div>
           <span className="text-label" style={{color: 'var(--gold)'}}>今日大吉时</span>
           <div className="h-px flex-1 bg-gold-line"></div>
+          <span className="text-[10px]" style={{color: 'var(--muted)'}}>点击切换时辰</span>
         </div>
         <div className="flex flex-wrap gap-1.5">
           {result.main?.daJiShiChen.map((s: string) => (
-            <span key={s}
-                  className={`inline-block rounded-full px-3 py-1.5 text-sm font-serif font-semibold transition ${
-                    s === result.hourZhi
-                      ? 'shadow-md'
-                      : ''
-                  }`}
-                  style={{
-                    background: s === result.hourZhi ? 'var(--jade)' : 'var(--gold-soft)',
-                    color: s === result.hourZhi ? '#fff' : 'var(--gold-2)',
-                    border: `1px solid ${s === result.hourZhi ? 'var(--jade)' : 'var(--gold-line)'}`,
-                  }}>
+            <button
+              key={s}
+              onClick={() => jumpToShiChen(s)}
+              className={`inline-block rounded-full px-3 py-1.5 text-sm font-serif font-semibold transition cursor-pointer hover:shadow-md hover:scale-105 ${
+                s === result.hourZhi
+                  ? 'shadow-md'
+                  : ''
+              }`}
+              style={{
+                background: s === result.hourZhi ? 'var(--jade)' : 'var(--gold-soft)',
+                color: s === result.hourZhi ? '#fff' : 'var(--gold-2)',
+                border: `1px solid ${s === result.hourZhi ? 'var(--jade)' : 'var(--gold-line)'}`,
+              }}
+              title={`切换到 ${s}时`}
+            >
               {s}时
-            </span>
+            </button>
           ))}
         </div>
       </div>
