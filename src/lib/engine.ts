@@ -31,7 +31,7 @@ const ZHI_YY_INDEX: Map<string, typeof ZHI_YANG_YIN[number]> = new Map(
   ZHI_YANG_YIN.map(r => [`${r[0]}|${r[2]}`, r])
 )
 
-const JI_XIONG_INDEX: Map<string, typeof JI_XIONG[number]> = new Map(
+export const JI_XIONG_INDEX: Map<string, typeof JI_XIONG[number]> = new Map(
   JI_XIONG.map(r => [`${r[0]}|${r[1]}`, r])
 )
 

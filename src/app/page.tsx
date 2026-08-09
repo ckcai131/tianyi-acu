@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { calculateNow, calculateAll } from '@/lib/engine'
+import { calculateNow, calculateAll, JI_XIONG_INDEX } from '@/lib/engine'
 import { loadAcupointMap, getAcupointFromMap } from '@/lib/acupoint-finder'
 
 // 12 时辰选项 (中医用户视角)
@@ -245,6 +245,62 @@ export default function HomePage() {
         )
       )}
 
+      {/* ── 今日大吉时 · 一览表 (合并: 每个按钮显示该时辰吉凶) ── */}
+      {result.main?.daJiShiChen && result.main.daJiShiChen.length > 0 && (
+        <div className="card-base p-4 sm:p-5 mb-5">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="h-px w-6 bg-gold-line"></div>
+            <span className="text-label" style={{color: 'var(--gold)'}}>今日大吉时</span>
+            <div className="h-px flex-1 bg-gold-line"></div>
+            <span className="text-[10px]" style={{color: 'var(--muted)'}}>点击切换时辰</span>
+          </div>
+          {/* 一览表: 每个时辰一行, 显示该时辰的黄黑道/神煞 */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+            {result.main.daJiShiChen.map((s: string) => {
+              // 取该时辰的吉凶判定 (jiXiong 是当前时辰的, 我们需要查每个吉时)
+              const shiChenJiXiong = (result.jiXiong?.dayGanZhi === result.dayGanZhi)
+                ? JI_XIONG_INDEX.get(`${result.dayGanZhi}|${s}`)
+                : null
+              const shiChenInfo = shiChenJiXiong ? {
+                huangHeiDao: shiChenJiXiong[4],
+                shenSha: shiChenJiXiong[3],
+                isCurrent: s === result.hourZhi,
+              } : { huangHeiDao: '', shenSha: '', isCurrent: s === result.hourZhi }
+
+              const isCurrent = shiChenInfo.isCurrent
+
+              return (
+                <button
+                  key={s}
+                  onClick={() => jumpToShiChen(s)}
+                  className={`text-left p-2.5 rounded-lg transition cursor-pointer hover:shadow-md hover:scale-[1.02] ${
+                    isCurrent ? 'shadow-md' : ''
+                  }`}
+                  style={{
+                    background: isCurrent ? 'var(--jade)' : 'var(--gold-soft)',
+                    color: isCurrent ? '#fff' : 'var(--ink)',
+                    border: `1px solid ${isCurrent ? 'var(--jade)' : 'var(--gold-line)'}`,
+                  }}
+                  title={`切换到 ${s}时`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-bold text-base">{s}时</span>
+                    {isCurrent && <span className="text-xs">✓</span>}
+                  </div>
+                  <div className={`text-[11px] leading-relaxed ${
+                    isCurrent ? 'opacity-90' : ''
+                  }`} style={{
+                    color: isCurrent ? '#fff' : 'var(--muted)',
+                  }}>
+                    {shiChenInfo.huangHeiDao || ''} {shiChenInfo.shenSha ? `· ${shiChenInfo.shenSha}` : ''}
+                  </div>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
       {/* ── 4 大算法详情 ── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
         <MethodCard title="值符" index="①" subtitle={result.zhiFu?.actualGan + '取' + result.zhiFu?.rule}>
@@ -275,37 +331,6 @@ export default function HomePage() {
           <DetailRow k="五不遇" v={result.jiXiong?.wuBuYu} />
           <DetailRow k="是否大吉" v={result.jiXiong?.daJi} acc />
         </MethodCard>
-      </div>
-
-      {/* ── 今日大吉时 ── */}
-      <div className="card-base p-4 sm:p-5 mb-5">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="h-px w-6 bg-gold-line"></div>
-          <span className="text-label" style={{color: 'var(--gold)'}}>今日大吉时</span>
-          <div className="h-px flex-1 bg-gold-line"></div>
-          <span className="text-[10px]" style={{color: 'var(--muted)'}}>点击切换时辰</span>
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {result.main?.daJiShiChen.map((s: string) => (
-            <button
-              key={s}
-              onClick={() => jumpToShiChen(s)}
-              className={`inline-block rounded-full px-3 py-1.5 text-sm font-serif font-semibold transition cursor-pointer hover:shadow-md hover:scale-105 ${
-                s === result.hourZhi
-                  ? 'shadow-md'
-                  : ''
-              }`}
-              style={{
-                background: s === result.hourZhi ? 'var(--jade)' : 'var(--gold-soft)',
-                color: s === result.hourZhi ? '#fff' : 'var(--gold-2)',
-                border: `1px solid ${s === result.hourZhi ? 'var(--jade)' : 'var(--gold-line)'}`,
-              }}
-              title={`切换到 ${s}时`}
-            >
-              {s}时
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* ── 免责声明 ── */}

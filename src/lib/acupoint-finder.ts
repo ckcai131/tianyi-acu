@@ -22,6 +22,20 @@ export interface AcupointIndex {
   meridianZh?: string             // 经络中文
 }
 
+// 常见繁简映射 (OpenCC t2s 不能识别的)
+// 当输入穴位名是繁体, 用这个映射转为简体再查询
+const TRAD_TO_SIMP: Record<string, string> = {
+  '谿': '溪',     // 侠谿→侠溪, 解谿→解溪
+  '鄕': '乡',     // 胸鄕→胸乡
+  '窓': '窗',     // 天窓→天窗, 目窓→目窗
+  '髙': '高',
+  '兪': '俞',
+  '𫍻': '嘻',
+  '勞': '劳',
+  '車': '车',
+  '兩': '两',
+}
+
 /**
  * 异步加载完整 409 穴位索引 (4.1 KB gzip)
  * 浏览器自动 Accept-Encoding: gzip → 一次 fetch 即可
@@ -71,10 +85,22 @@ export async function loadAcupointMap(): Promise<Record<string, AcupointIndex>> 
 
 /**
  * 同步版 - 仅用于已加载场景
+ * 支持简体/繁体查询: 输入繁体穴位名时会自动转简体再查
  */
 export function getAcupointFromMap(map: Record<string, AcupointIndex>, name: string): AcupointIndex | null {
   const cleanName = name.replace(/穴$/, '')
-  return map[cleanName] || map[name] || map[cleanName + '穴'] || null
+  // 1. 直接查
+  let r = map[cleanName] || map[name] || map[cleanName + '穴'] || null
+  if (r) return r
+  // 2. 繁体 → 简体 fallback
+  let simp = cleanName
+  for (const [trad, sim] of Object.entries(TRAD_TO_SIMP)) {
+    simp = simp.replace(trad, sim)
+  }
+  if (simp !== cleanName) {
+    return map[simp] || map[simp + '穴'] || null
+  }
+  return null
 }
 
 /**
