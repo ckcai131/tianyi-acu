@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { calculateNow, calculateAll } from '@/lib/engine'
-import { hasAcupoint3D, getAcupoint3D } from '@/lib/acupoint-map'
+import { loadAcupointMap, getAcupointFromMap } from '@/lib/acupoint-finder'
 
 // 12 时辰选项 (中医用户视角)
 const SHICHEN_OPTIONS = [
@@ -249,8 +249,31 @@ export default function HomePage() {
 // ─── 三穴核心卡片 ───
 function NeedleCard({ index, label, acupoint, jingLuo }: { index: string; label: string; acupoint?: string; jingLuo?: string }) {
   const cleanName = acupoint?.replace(/穴$/, '') || ''
-  const mapping = cleanName ? getAcupoint3D(cleanName) : null
-  const has3D = mapping !== null
+
+  // 异步加载穴位索引 (gzip 后 ~3.5 KB)
+  const [mapping, setMapping] = useState<{ code: string; meridianZh?: string } | null>(null)
+  const [checked, setChecked] = useState(false)
+
+  useEffect(() => {
+    if (!cleanName) {
+      setChecked(true)
+      return
+    }
+    let cancelled = false
+    loadAcupointMap().then(map => {
+      if (cancelled) return
+      const found = getAcupointFromMap(map, cleanName)
+      setMapping(found)
+      setChecked(true)
+    })
+    return () => { cancelled = true }
+  }, [cleanName])
+
+  // fallback: 如果索引没找到, 用 name+meridian 跳转 (2D 页支持模糊匹配)
+  const linkUrl = mapping
+    ? `2d/?point=${mapping.code}&name=${encodeURIComponent(acupoint || '')}穴&meridian=${encodeURIComponent(jingLuo || mapping.meridianZh || '')}`
+    : `2d/?name=${encodeURIComponent(acupoint || '')}穴&meridian=${encodeURIComponent(jingLuo || '')}`
+  const has3D = checked && mapping !== null
 
   return (
     <div className="gold-deco p-3 sm:p-4 text-center overflow-hidden">
@@ -265,31 +288,19 @@ function NeedleCard({ index, label, acupoint, jingLuo }: { index: string; label:
         {jingLuo || '—'}
       </div>
       {acupoint && (
-        has3D ? (
-          <a
-            href={`2d/?point=${mapping!.code}&name=${encodeURIComponent(acupoint)}穴&meridian=${encodeURIComponent(jingLuo || '')}`}
-            className="inline-block mt-2 text-[10px] sm:text-xs px-2 py-0.5 rounded-full transition"
-            style={{
-              background: 'var(--gold)',
-              color: '#fbf6ec',
-              textDecoration: 'none',
-            }}
-          >
-            📍 经穴图
-          </a>
-        ) : (
-          <div
-            className="inline-block mt-2 text-[10px] sm:text-xs px-2 py-0.5 rounded-full"
-            style={{
-              background: 'transparent',
-              color: 'var(--muted)',
-              border: '1px dashed var(--line)',
-            }}
-            title="此穴位不在 3D 模型中"
-          >
-            · 仅文字 ·
-          </div>
-        )
+        <a
+          href={linkUrl}
+          className="inline-block mt-2 text-[10px] sm:text-xs px-2 py-0.5 rounded-full transition"
+          style={{
+            background: has3D ? 'var(--gold)' : 'transparent',
+            color: has3D ? '#fbf6ec' : 'var(--muted)',
+            border: has3D ? 'none' : '1px dashed var(--line)',
+            textDecoration: 'none',
+          }}
+          title={has3D ? '查看经穴图' : '此穴位未收录经穴图, 仅跳转详情'}
+        >
+          {has3D ? '📍 经穴图' : '· 仅文字 ·'}
+        </a>
       )}
     </div>
   )
