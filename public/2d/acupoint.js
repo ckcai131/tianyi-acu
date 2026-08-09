@@ -100,63 +100,77 @@
       const pos = p.position;
       const isTarget = targetCode && p.code === targetCode;
 
-      // SVG <circle> 用 viewBox 单位, 跟 SVG 一起缩放
-      const cx = pos.x;
-      const cy = pos.y;
-      const r = isTarget ? 4.0 : 1.8;     // 普通穴位更小
-      const ringExtra = isTarget ? 1.5 : 0.6;
-
-      // 外圈 (透明背景)
-      const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      ring.setAttribute('cx', cx);
-      ring.setAttribute('cy', cy);
-      ring.setAttribute('r', r + ringExtra);
-      ring.setAttribute('fill', isTarget ? 'rgba(184, 57, 46, 0.25)' : 'rgba(168, 98, 31, 0.15)');
-      ring.setAttribute('stroke', isTarget ? '#b8392e' : '#a8621f');
-      ring.setAttribute('stroke-width', isTarget ? 0.6 : 0.3);
-      ring.style.cursor = 'pointer';
-      ring.style.pointerEvents = 'auto';
-      ring.dataset.baseR = r + ringExtra;
-      ring.dataset.code = p.code;
-      if (isTarget) ring.classList.add('is-target');
-
-      // 添加 hover 效果 (悬停时放大)
-      ring.addEventListener('mouseenter', () => {
-        if (!ring.classList.contains('is-target')) {
-          ring.setAttribute('r', (r + ringExtra) * 2.2);
-          ring.setAttribute('fill', 'rgba(168, 98, 31, 0.4)');
-        }
-      });
-      ring.addEventListener('mouseleave', () => {
-        if (!ring.classList.contains('is-target')) {
-          ring.setAttribute('r', r + ringExtra);
-          ring.setAttribute('fill', 'rgba(168, 98, 31, 0.15)');
-        }
-      });
-
-      // 添加脉冲动画 (如果目标穴位)
-      if (isTarget) {
-        const animate = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
-        animate.setAttribute('attributeName', 'r');
-        animate.setAttribute('values', `${r + 1.5};${r + 4};${r + 1.5}`);
-        animate.setAttribute('dur', '1.6s');
-        animate.setAttribute('repeatCount', 'indefinite');
-        ring.appendChild(animate);
+      // 生成所有需要绘制的位置 (处理 bilateral 双侧穴位)
+      const positions = [];
+      if (pos.bilateral) {
+        // 双侧穴位: 原位置 + 镜像位置 (200 - x, 因为 viewBox 是 0-200)
+        positions.push({ x: pos.x, y: pos.y, side: 'right' });
+        positions.push({ x: 200 - pos.x, y: pos.y, side: 'left' });
+      } else {
+        // 单侧穴位: 中线穴位 (x=100 附近) 或只有一个位置
+        positions.push({ x: pos.x, y: pos.y, side: 'center' });
       }
 
-      ring.addEventListener('click', (e) => {
-        e.stopPropagation();
-        showInfo(p);
-        // 触发局部放大 (针对手部/脚部/面部)
-        zoomToRegion(view, cx, cy, p.region);
+      positions.forEach(({ x: cx, y: cy, side }) => {
+        const r = isTarget ? 4.0 : 1.8;     // 普通穴位更小
+        const ringExtra = isTarget ? 1.5 : 0.6;
+
+        // 外圈 (透明背景)
+        const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        ring.setAttribute('cx', cx);
+        ring.setAttribute('cy', cy);
+        ring.setAttribute('r', r + ringExtra);
+        ring.setAttribute('fill', isTarget ? 'rgba(184, 57, 46, 0.25)' : 'rgba(168, 98, 31, 0.15)');
+        ring.setAttribute('stroke', isTarget ? '#b8392e' : '#a8621f');
+        ring.setAttribute('stroke-width', isTarget ? 0.6 : 0.3);
+        ring.style.cursor = 'pointer';
+        ring.style.pointerEvents = 'auto';
+        ring.dataset.baseR = r + ringExtra;
+        ring.dataset.code = p.code;
+        ring.dataset.side = side;
+        if (isTarget) ring.classList.add('is-target');
+
+        // 添加 hover 效果 (悬停时放大)
+        ring.addEventListener('mouseenter', () => {
+          if (!ring.classList.contains('is-target')) {
+            ring.setAttribute('r', (r + ringExtra) * 2.2);
+            ring.setAttribute('fill', 'rgba(168, 98, 31, 0.4)');
+          }
+        });
+        ring.addEventListener('mouseleave', () => {
+          if (!ring.classList.contains('is-target')) {
+            ring.setAttribute('r', r + ringExtra);
+            ring.setAttribute('fill', 'rgba(168, 98, 31, 0.15)');
+          }
+        });
+
+        // 添加脉冲动画 (如果目标穴位)
+        if (isTarget) {
+          const animate = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
+          animate.setAttribute('attributeName', 'r');
+          animate.setAttribute('values', `${r + 1.5};${r + 4};${r + 1.5}`);
+          animate.setAttribute('dur', '1.6s');
+          animate.setAttribute('repeatCount', 'indefinite');
+          ring.appendChild(animate);
+        }
+
+        ring.addEventListener('click', (e) => {
+          e.stopPropagation();
+          showInfo(p);
+          // 触发局部放大 (针对手部/脚部/面部)
+          zoomToRegion(view, cx, cy, p.region);
+        });
+
+        // 添加 title tooltip
+        const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        const sideLabel = side === 'left' ? '左' : side === 'right' ? '右' : '';
+        title.textContent = sideLabel
+          ? `${p.code} · ${p.name_zh}穴 (${sideLabel}) · ${p.meridian.name_zh}`
+          : `${p.code} · ${p.name_zh}穴 · ${p.meridian.name_zh}`;
+        ring.appendChild(title);
+
+        markerLayer.appendChild(ring);
       });
-
-      // 添加 title tooltip
-      const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
-      title.textContent = `${p.code} · ${p.name_zh}穴 · ${p.meridian.name_zh}`;
-      ring.appendChild(title);
-
-      markerLayer.appendChild(ring);
     });
   }
 
