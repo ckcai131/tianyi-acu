@@ -199,7 +199,7 @@ export default function HomePage() {
       </div>
 
       {/* ── 干支 Banner ── */}
-      <div className="gold-deco p-4 sm:p-5 mb-5">
+      <div className="card-base p-4 sm:p-5 mb-5">
         <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
           <div>
             <div className="text-label mb-1" style={{color: 'var(--gold-2)'}}>日 柱</div>
