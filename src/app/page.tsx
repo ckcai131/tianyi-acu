@@ -339,7 +339,7 @@ export default function HomePage() {
       </div>
 
       {/* ── 时空方位 · 八方九星 ── */}
-      <ShiKongFangWei dayGanZhi={result.dayGanZhi} dayYinYang={result.dayYinYang} />
+      <ShiKongFangWei dayGanZhi={result.dayGanZhi} dunType={result.dunType} />
 
       {/* ── 免责声明 ── */}
       <footer className="text-center mt-8 pt-5" style={{borderTop: '1px solid var(--line)'}}>
@@ -463,7 +463,7 @@ type FangWeiEntry = {
 }
 type FangWeiMap = Record<string, Record<'阳遁' | '阴遁', FangWeiEntry>>
 
-function ShiKongFangWei({ dayGanZhi, dayYinYang }: { dayGanZhi: string; dayYinYang: '阳' | '阴' }) {
+function ShiKongFangWei({ dayGanZhi, dunType }: { dayGanZhi: string; dunType: '阳遁' | '阴遁' }) {
   const [data, setData] = useState<FangWeiEntry | null>(null)
 
   useEffect(() => {
@@ -472,7 +472,7 @@ function ShiKongFangWei({ dayGanZhi, dayYinYang }: { dayGanZhi: string; dayYinYa
       .then(r => r.json() as Promise<FangWeiMap>)
       .then(map => {
         if (cancelled) return
-        const entry = map[dayGanZhi]?.[dayYinYang === '阳' ? '阳遁' : '阴遁']
+        const entry = map[dayGanZhi]?.[dunType]
         if (entry) {
           setData(entry)
         } else {
@@ -481,7 +481,7 @@ function ShiKongFangWei({ dayGanZhi, dayYinYang }: { dayGanZhi: string; dayYinYa
       })
       .catch(() => { if (!cancelled) setData(null) })
     return () => { cancelled = true }
-  }, [dayGanZhi, dayYinYang])
+  }, [dayGanZhi, dunType])
 
   if (!data) {
     return (
@@ -508,7 +508,7 @@ function ShiKongFangWei({ dayGanZhi, dayYinYang }: { dayGanZhi: string; dayYinYa
           时空方位 · 八方九星
         </div>
         <div className="text-[10px] sm:text-xs" style={{color: 'var(--muted)'}}>
-          日柱 {dayGanZhi} · {dayYinYang === '阳' ? '阳遁' : '阴遁'}
+          日柱 {dayGanZhi} · {dunType}
         </div>
       </div>
 

@@ -13,6 +13,7 @@ import { ZHI_SHI } from './zhishi'
 import { ZHI_YANG_YIN } from './zhiyy'
 import { JI_XIONG } from './jixiong'
 import { type TianGan, type DiZhi, TIAN_GAN, DI_ZHI, getDayGan, getDayZhi, hourToDiZhi, getHourGanZhi, diZhiToShichenName } from './data'
+import { calcDunType, type DunType } from './jieqi'
 
 // 索引加速查表
 const JIAZI_INDEX: Map<string, typeof JIAZI_TABLE[number]> = new Map(
@@ -180,6 +181,7 @@ export interface AllResult {
   dayGan: TianGan
   dayZhi: DiZhi
   dayYinYang: '阳' | '阴'
+  dunType: DunType
   hourZhi: DiZhi
   hourGanZhi: string
   shiChenName: string
@@ -195,6 +197,9 @@ export function calculateAll(year: number, month: number, day: number, hour: num
   const dayZhi = getDayZhi(year, month, day)
   const dayGanZhi = dayGan + dayZhi
   const dayYinYang: '阳' | '阴' = TIAN_GAN.indexOf(dayGan) % 2 === 0 ? '阳' : '阴'
+  // 奇门遁局: 由节气决定 (冬至→阳遁, 夏至→阴遁)
+  // 注意: 不要用日干阴阳判断 - 那是天乙神针针法的"值阳/值阴"判断依据
+  const dunType: DunType = calcDunType(year, month, day)
 
   const hourZhi = hourToDiZhi(hour)
   const hourGanZhi = getHourGanZhi(dayGan, hourZhi)
@@ -206,6 +211,7 @@ export function calculateAll(year: number, month: number, day: number, hour: num
     dayGan,
     dayZhi,
     dayYinYang,
+    dunType,
     hourZhi,
     hourGanZhi,
     shiChenName,
