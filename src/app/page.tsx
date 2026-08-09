@@ -44,6 +44,8 @@ export default function HomePage() {
   // ref 追踪上一次值, 避免首次挂载触发不必要的重算
   const prevDate = useRef<string>('')
   const prevShichen = useRef<number>(-1)
+  // ref 引用最新的 userEdited, 让 setInterval 内部能感知状态变化
+  const userEditedRef = useRef(false)
 
   useEffect(() => {
     setMounted(true)
@@ -61,10 +63,11 @@ export default function HomePage() {
     setResult(calculateNow())
     // 只有用户没修改过日期/时辰时, 才每 30 秒自动刷新当前时间结果
     const id = setInterval(() => {
-      if (!userEdited) setResult(calculateNow())
+      if (!userEditedRef.current) setResult(calculateNow())
     }, 30000)
     return () => clearInterval(id)
-  }, [userEdited])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])  // 仅初次挂载跑一次
 
   const handleCalc = () => {
     if (!date) return
@@ -75,6 +78,7 @@ export default function HomePage() {
   // 恢复当前真实时间 (清除用户编辑标记)
   const resetToNow = () => {
     setUserEdited(false)
+    userEditedRef.current = false  // 同步到 ref
     const d = new Date()
     const yyyy = d.getFullYear()
     const mm = String(d.getMonth() + 1).padStart(2, '0')
@@ -117,6 +121,7 @@ export default function HomePage() {
         console.log('[auto-recalc]', { date, shichenValue, hourZhi: r.hourZhi, hourGanZhi: r.hourGanZhi })
         setResult(r)
         setUserEdited(true)
+        userEditedRef.current = true  // 同步到 ref, 让 setInterval 也能感知
       }
     }, 200)
     return () => clearTimeout(id)
