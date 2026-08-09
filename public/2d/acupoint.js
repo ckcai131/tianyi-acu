@@ -30,8 +30,8 @@
     back: 'body_back.svg',
   };
   const viewBoxMap = {
-    front: { w: 200, h: 580 },
-    back:  { w: 200, h: 580 },
+    front: { w: 140, h: 580 },
+    back:  { w: 140, h: 580 },
   };
 
   // ─── 加载穴位数据 ───
@@ -44,7 +44,8 @@
   // ─── 加载 SVG ───
   async function loadSVG(view) {
     const container = document.getElementById('body-container');
-    const resp = await fetch(viewFiles[view]);
+    // 加 timestamp 防缓存
+    const resp = await fetch(viewFiles[view] + '?v=' + Date.now());
     const svgText = await resp.text();
     container.innerHTML = svgText;
 
