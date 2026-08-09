@@ -30,8 +30,8 @@
     back: 'body_back.svg',
   };
   const viewBoxMap = {
-    front: { w: 140, h: 580 },
-    back:  { w: 140, h: 580 },
+    front: { w: 200, h: 580 },
+    back:  { w: 200, h: 580 },
   };
 
   // ─── 加载穴位数据 ───
