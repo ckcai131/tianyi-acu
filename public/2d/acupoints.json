@@ -1858,7 +1858,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 107,
+        "y": 47,
+        "bilateral": true
+      }
     },
     {
       "code": "ST4",
@@ -1949,7 +1954,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 60,
+        "bilateral": true
+      }
     },
     {
       "code": "ST6",
@@ -2197,7 +2207,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 86,
+        "bilateral": true
+      }
     },
     {
       "code": "ST11",
@@ -2241,7 +2256,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 90,
+        "bilateral": true
+      }
     },
     {
       "code": "ST12",
@@ -2282,7 +2302,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 96,
+        "bilateral": true
+      }
     },
     {
       "code": "ST13",
@@ -2326,7 +2351,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 102,
+        "bilateral": true
+      }
     },
     {
       "code": "ST14",
@@ -2365,7 +2395,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 112,
+        "bilateral": true
+      }
     },
     {
       "code": "ST15",
@@ -2410,7 +2445,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 122,
+        "bilateral": true
+      }
     },
     {
       "code": "ST16",
@@ -2455,7 +2495,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 132,
+        "bilateral": true
+      }
     },
     {
       "code": "ST17",
@@ -2486,7 +2531,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 145,
+        "bilateral": true
+      }
     },
     {
       "code": "ST18",
@@ -2529,7 +2579,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 162,
+        "bilateral": true
+      }
     },
     {
       "code": "ST19",
@@ -2570,7 +2625,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 196,
+        "bilateral": true
+      }
     },
     {
       "code": "ST20",
@@ -2611,7 +2671,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 202,
+        "bilateral": true
+      }
     },
     {
       "code": "ST21",
@@ -2654,7 +2719,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 208,
+        "bilateral": true
+      }
     },
     {
       "code": "ST22",
@@ -2698,7 +2768,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 214,
+        "bilateral": true
+      }
     },
     {
       "code": "ST23",
@@ -2739,7 +2814,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 220,
+        "bilateral": true
+      }
     },
     {
       "code": "ST24",
@@ -2778,7 +2858,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 226,
+        "bilateral": true
+      }
     },
     {
       "code": "ST25",
@@ -2874,7 +2959,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 246,
+        "bilateral": true
+      }
     },
     {
       "code": "ST27",
@@ -2915,7 +3005,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 252,
+        "bilateral": true
+      }
     },
     {
       "code": "ST28",
@@ -2959,7 +3054,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 258,
+        "bilateral": true
+      }
     },
     {
       "code": "ST29",
@@ -3004,7 +3104,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 264,
+        "bilateral": true
+      }
     },
     {
       "code": "ST30",
@@ -3050,7 +3155,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 115,
+        "y": 270,
+        "bilateral": true
+      }
     },
     {
       "code": "ST31",
@@ -3093,7 +3203,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 122,
+        "y": 310,
+        "bilateral": true
+      }
     },
     {
       "code": "ST32",
@@ -3138,7 +3253,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 124,
+        "y": 350,
+        "bilateral": true
+      }
     },
     {
       "code": "ST33",
@@ -3183,7 +3303,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 124,
+        "y": 395,
+        "bilateral": true
+      }
     },
     {
       "code": "ST34",
@@ -3278,7 +3403,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 124,
+        "y": 420,
+        "bilateral": true
+      }
     },
     {
       "code": "ST36",
@@ -3503,7 +3633,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 458,
+        "bilateral": true
+      }
     },
     {
       "code": "ST40",
@@ -3669,7 +3804,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 125,
+        "y": 540,
+        "bilateral": true
+      }
     },
     {
       "code": "ST43",
@@ -3713,7 +3853,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 127,
+        "y": 553,
+        "bilateral": true
+      }
     },
     {
       "code": "ST44",
@@ -3826,7 +3971,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 127,
+        "y": 558,
+        "bilateral": true
+      }
     },
     {
       "code": "SP1",
@@ -3871,7 +4021,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 558,
+        "bilateral": true
+      }
     },
     {
       "code": "SP2",
@@ -3912,7 +4067,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 109,
+        "y": 552,
+        "bilateral": true
+      }
     },
     {
       "code": "SP3",
@@ -4068,7 +4228,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 109,
+        "y": 532,
+        "bilateral": true
+      }
     },
     {
       "code": "SP6",
@@ -4185,7 +4350,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 470,
+        "bilateral": true
+      }
     },
     {
       "code": "SP8",
@@ -4398,7 +4568,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 320,
+        "bilateral": true
+      }
     },
     {
       "code": "SP12",
@@ -4437,7 +4612,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 122,
+        "y": 290,
+        "bilateral": true
+      }
     },
     {
       "code": "SP13",
@@ -4474,7 +4654,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 122,
+        "y": 270,
+        "bilateral": true
+      }
     },
     {
       "code": "SP14",
@@ -4517,7 +4702,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 122,
+        "y": 250,
+        "bilateral": true
+      }
     },
     {
       "code": "SP15",
@@ -4607,7 +4797,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 124,
+        "y": 224,
+        "bilateral": true
+      }
     },
     {
       "code": "SP17",
@@ -4648,7 +4843,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 124,
+        "y": 195,
+        "bilateral": true
+      }
     },
     {
       "code": "SP18",
@@ -4694,7 +4894,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 124,
+        "y": 180,
+        "bilateral": true
+      }
     },
     {
       "code": "SP19",
@@ -4735,7 +4940,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 124,
+        "y": 165,
+        "bilateral": true
+      }
     },
     {
       "code": "SP20",
@@ -4776,7 +4986,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 124,
+        "y": 150,
+        "bilateral": true
+      }
     },
     {
       "code": "SP21",
@@ -4819,7 +5034,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 124,
+        "y": 130,
+        "bilateral": true
+      }
     },
     {
       "code": "HT1",
@@ -5364,7 +5584,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 158,
+        "y": 308,
+        "bilateral": true
+      }
     },
     {
       "code": "SI2",
@@ -5407,7 +5632,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 155,
+        "y": 308,
+        "bilateral": true
+      }
     },
     {
       "code": "SI3",
@@ -5569,7 +5799,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 150,
+        "y": 295,
+        "bilateral": true
+      }
     },
     {
       "code": "SI6",
@@ -5668,7 +5903,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 150,
+        "y": 260,
+        "bilateral": true
+      }
     },
     {
       "code": "SI8",
@@ -5764,7 +6004,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 150,
+        "y": 130,
+        "bilateral": true
+      }
     },
     {
       "code": "SI10",
@@ -5807,7 +6052,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 150,
+        "y": 120,
+        "bilateral": true
+      }
     },
     {
       "code": "SI11",
@@ -5901,7 +6151,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 130,
+        "y": 110,
+        "bilateral": true
+      }
     },
     {
       "code": "SI13",
@@ -5938,7 +6193,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 130,
+        "y": 100,
+        "bilateral": true
+      }
     },
     {
       "code": "SI14",
@@ -5979,7 +6239,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 130,
+        "y": 100,
+        "bilateral": true
+      }
     },
     {
       "code": "SI15",
@@ -6022,7 +6287,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 130,
+        "y": 100,
+        "bilateral": true
+      }
     },
     {
       "code": "SI16",
@@ -6066,7 +6336,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 120,
+        "y": 78,
+        "bilateral": true
+      }
     },
     {
       "code": "SI17",
@@ -6110,7 +6385,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 122,
+        "y": 70,
+        "bilateral": true
+      }
     },
     {
       "code": "SI18",
@@ -6366,7 +6646,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 101.0,
+        "y": 33,
+        "bilateral": true
+      }
     },
     {
       "code": "BL4",
@@ -6409,7 +6694,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100.5,
+        "y": 30,
+        "bilateral": true
+      }
     },
     {
       "code": "BL5",
@@ -6450,7 +6740,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100.0,
+        "y": 28,
+        "bilateral": true
+      }
     },
     {
       "code": "BL6",
@@ -6489,7 +6784,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 99.5,
+        "y": 26,
+        "bilateral": true
+      }
     },
     {
       "code": "BL7",
@@ -6532,7 +6832,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 99.0,
+        "y": 24,
+        "bilateral": true
+      }
     },
     {
       "code": "BL8",
@@ -6573,7 +6878,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 98.5,
+        "y": 22,
+        "bilateral": true
+      }
     },
     {
       "code": "BL9",
@@ -6616,7 +6926,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 98.0,
+        "y": 20,
+        "bilateral": true
+      }
     },
     {
       "code": "BL10",
@@ -6978,7 +7293,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 180,
+        "bilateral": true
+      }
     },
     {
       "code": "BL17",
@@ -7428,7 +7748,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 260,
+        "bilateral": true
+      }
     },
     {
       "code": "BL25",
@@ -7529,7 +7854,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 285,
+        "bilateral": true
+      }
     },
     {
       "code": "BL27",
@@ -7576,7 +7906,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 295,
+        "bilateral": true
+      }
     },
     {
       "code": "BL28",
@@ -7673,7 +8008,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 315,
+        "bilateral": true
+      }
     },
     {
       "code": "BL30",
@@ -7721,7 +8061,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 325,
+        "bilateral": true
+      }
     },
     {
       "code": "BL31",
@@ -7765,7 +8110,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 380,
+        "bilateral": true
+      }
     },
     {
       "code": "BL32",
@@ -7867,7 +8217,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 400,
+        "bilateral": true
+      }
     },
     {
       "code": "BL34",
@@ -7910,7 +8265,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 410,
+        "bilateral": true
+      }
     },
     {
       "code": "BL35",
@@ -7954,7 +8314,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 130,
+        "y": 425,
+        "bilateral": true
+      }
     },
     {
       "code": "BL36",
@@ -7999,7 +8364,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 122,
+        "y": 410,
+        "bilateral": true
+      }
     },
     {
       "code": "BL37",
@@ -8044,7 +8414,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 122,
+        "y": 425,
+        "bilateral": true
+      }
     },
     {
       "code": "BL38",
@@ -8083,7 +8458,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 122,
+        "y": 415,
+        "bilateral": true
+      }
     },
     {
       "code": "BL39",
@@ -8129,7 +8509,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 110,
+        "y": 415,
+        "bilateral": true
+      }
     },
     {
       "code": "BL40",
@@ -8240,7 +8625,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 130,
+        "bilateral": true
+      }
     },
     {
       "code": "BL42",
@@ -8285,7 +8675,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 145,
+        "bilateral": true
+      }
     },
     {
       "code": "BL43",
@@ -8330,7 +8725,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 155,
+        "bilateral": true
+      }
     },
     {
       "code": "BL44",
@@ -8375,7 +8775,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 165,
+        "bilateral": true
+      }
     },
     {
       "code": "BL45",
@@ -8416,7 +8821,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 175,
+        "bilateral": true
+      }
     },
     {
       "code": "BL46",
@@ -8460,7 +8870,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 185,
+        "bilateral": true
+      }
     },
     {
       "code": "BL47",
@@ -8503,7 +8918,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 195,
+        "bilateral": true
+      }
     },
     {
       "code": "BL48",
@@ -8546,7 +8966,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 205,
+        "bilateral": true
+      }
     },
     {
       "code": "BL49",
@@ -8589,7 +9014,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 215,
+        "bilateral": true
+      }
     },
     {
       "code": "BL50",
@@ -8630,7 +9060,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 225,
+        "bilateral": true
+      }
     },
     {
       "code": "BL51",
@@ -8669,7 +9104,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 235,
+        "bilateral": true
+      }
     },
     {
       "code": "BL52",
@@ -8765,7 +9205,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 295,
+        "bilateral": true
+      }
     },
     {
       "code": "BL54",
@@ -8811,7 +9256,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 325,
+        "bilateral": true
+      }
     },
     {
       "code": "BL55",
@@ -8850,7 +9300,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 122,
+        "y": 425,
+        "bilateral": true
+      }
     },
     {
       "code": "BL56",
@@ -8889,7 +9344,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 122,
+        "y": 440,
+        "bilateral": true
+      }
     },
     {
       "code": "BL57",
@@ -8987,7 +9447,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 122,
+        "y": 490,
+        "bilateral": true
+      }
     },
     {
       "code": "BL59",
@@ -9031,7 +9496,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 122,
+        "y": 510,
+        "bilateral": true
+      }
     },
     {
       "code": "BL60",
@@ -9131,7 +9601,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 130,
+        "y": 540,
+        "bilateral": true
+      }
     },
     {
       "code": "BL62",
@@ -9234,7 +9709,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 135,
+        "y": 540,
+        "bilateral": true
+      }
     },
     {
       "code": "BL64",
@@ -9283,7 +9763,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 135,
+        "y": 545,
+        "bilateral": true
+      }
     },
     {
       "code": "BL65",
@@ -9327,7 +9812,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 135,
+        "y": 552,
+        "bilateral": true
+      }
     },
     {
       "code": "BL66",
@@ -9370,7 +9860,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 137,
+        "y": 555,
+        "bilateral": true
+      }
     },
     {
       "code": "BL67",
@@ -9655,7 +10150,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 111,
+        "y": 524,
+        "bilateral": true
+      }
     },
     {
       "code": "KI5",
@@ -9699,7 +10199,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 111,
+        "y": 528,
+        "bilateral": true
+      }
     },
     {
       "code": "KI6",
@@ -9860,7 +10365,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 109,
+        "y": 510,
+        "bilateral": true
+      }
     },
     {
       "code": "KI9",
@@ -9901,7 +10411,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 470,
+        "bilateral": true
+      }
     },
     {
       "code": "KI10",
@@ -10001,7 +10516,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 290,
+        "bilateral": true
+      }
     },
     {
       "code": "KI12",
@@ -10044,7 +10564,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 280,
+        "bilateral": true
+      }
     },
     {
       "code": "KI13",
@@ -10087,7 +10612,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 270,
+        "bilateral": true
+      }
     },
     {
       "code": "KI14",
@@ -10132,7 +10662,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 260,
+        "bilateral": true
+      }
     },
     {
       "code": "KI15",
@@ -10171,7 +10706,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 250,
+        "bilateral": true
+      }
     },
     {
       "code": "KI16",
@@ -10214,7 +10754,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 244,
+        "bilateral": true
+      }
     },
     {
       "code": "KI17",
@@ -10253,7 +10798,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 234,
+        "bilateral": true
+      }
     },
     {
       "code": "KI18",
@@ -10296,7 +10846,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 224,
+        "bilateral": true
+      }
     },
     {
       "code": "KI19",
@@ -10339,7 +10894,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 214,
+        "bilateral": true
+      }
     },
     {
       "code": "KI20",
@@ -10380,7 +10940,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 204,
+        "bilateral": true
+      }
     },
     {
       "code": "KI21",
@@ -10425,7 +10990,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 198,
+        "bilateral": true
+      }
     },
     {
       "code": "KI22",
@@ -10471,7 +11041,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 175,
+        "bilateral": true
+      }
     },
     {
       "code": "KI23",
@@ -10514,7 +11089,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 165,
+        "bilateral": true
+      }
     },
     {
       "code": "KI24",
@@ -10557,7 +11137,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 155,
+        "bilateral": true
+      }
     },
     {
       "code": "KI25",
@@ -10596,7 +11181,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 145,
+        "bilateral": true
+      }
     },
     {
       "code": "KI26",
@@ -10639,7 +11229,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 135,
+        "bilateral": true
+      }
     },
     {
       "code": "KI27",
@@ -10678,7 +11273,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 108,
+        "y": 110,
+        "bilateral": true
+      }
     },
     {
       "code": "PC1",
@@ -11302,7 +11902,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 138,
+        "y": 312,
+        "bilateral": true
+      }
     },
     {
       "code": "TE3",
@@ -11576,7 +12181,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 144,
+        "y": 280,
+        "bilateral": true
+      }
     },
     {
       "code": "TE8",
@@ -11621,7 +12231,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 145,
+        "y": 270,
+        "bilateral": true
+      }
     },
     {
       "code": "TE9",
@@ -11664,7 +12279,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 146,
+        "y": 260,
+        "bilateral": true
+      }
     },
     {
       "code": "TE10",
@@ -11709,7 +12329,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 148,
+        "y": 230,
+        "bilateral": true
+      }
     },
     {
       "code": "TE11",
@@ -11752,7 +12377,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 146,
+        "y": 200,
+        "bilateral": true
+      }
     },
     {
       "code": "TE12",
@@ -11793,7 +12423,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 146,
+        "y": 180,
+        "bilateral": true
+      }
     },
     {
       "code": "TE13",
@@ -11832,7 +12467,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 146,
+        "y": 160,
+        "bilateral": true
+      }
     },
     {
       "code": "TE14",
@@ -11873,7 +12513,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 146,
+        "y": 120,
+        "bilateral": true
+      }
     },
     {
       "code": "TE15",
@@ -11912,7 +12557,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 118,
+        "y": 100,
+        "bilateral": true
+      }
     },
     {
       "code": "TE16",
@@ -11955,7 +12605,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 120,
+        "y": 64,
+        "bilateral": true
+      }
     },
     {
       "code": "TE17",
@@ -12051,7 +12706,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 123,
+        "y": 60,
+        "bilateral": true
+      }
     },
     {
       "code": "TE19",
@@ -12092,7 +12752,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 124,
+        "y": 56,
+        "bilateral": true
+      }
     },
     {
       "code": "TE20",
@@ -12137,7 +12802,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 90,
+        "y": 32,
+        "bilateral": true
+      }
     },
     {
       "code": "TE21",
@@ -12180,7 +12850,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 118,
+        "y": 36,
+        "bilateral": true
+      }
     },
     {
       "code": "TE22",
@@ -12219,7 +12894,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 115,
+        "y": 33,
+        "bilateral": true
+      }
     },
     {
       "code": "TE23",
@@ -12423,7 +13103,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 118,
+        "y": 47,
+        "bilateral": true
+      }
     },
     {
       "code": "GB4",
@@ -12468,7 +13153,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 105,
+        "y": 36,
+        "bilateral": true
+      }
     },
     {
       "code": "GB5",
@@ -12507,7 +13197,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 101,
+        "y": 32,
+        "bilateral": true
+      }
     },
     {
       "code": "GB6",
@@ -12548,7 +13243,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 98,
+        "y": 32,
+        "bilateral": true
+      }
     },
     {
       "code": "GB7",
@@ -12591,7 +13291,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 102,
+        "y": 32,
+        "bilateral": true
+      }
     },
     {
       "code": "GB8",
@@ -12682,7 +13387,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 90,
+        "y": 28,
+        "bilateral": true
+      }
     },
     {
       "code": "GB10",
@@ -12721,7 +13431,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 108,
+        "y": 70,
+        "bilateral": true
+      }
     },
     {
       "code": "GB11",
@@ -12764,7 +13479,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 110,
+        "y": 70,
+        "bilateral": true
+      }
     },
     {
       "code": "GB12",
@@ -12809,7 +13529,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 110,
+        "y": 70,
+        "bilateral": true
+      }
     },
     {
       "code": "GB13",
@@ -12850,7 +13575,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 98,
+        "y": 30,
+        "bilateral": true
+      }
     },
     {
       "code": "GB14",
@@ -12949,7 +13679,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 104,
+        "y": 32,
+        "bilateral": true
+      }
     },
     {
       "code": "GB16",
@@ -12992,7 +13727,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 108,
+        "y": 28,
+        "bilateral": true
+      }
     },
     {
       "code": "GB17",
@@ -13029,7 +13769,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 110,
+        "y": 26,
+        "bilateral": true
+      }
     },
     {
       "code": "GB18",
@@ -13073,7 +13818,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 108,
+        "y": 24,
+        "bilateral": true
+      }
     },
     {
       "code": "GB19",
@@ -13117,7 +13867,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 105,
+        "y": 22,
+        "bilateral": true
+      }
     },
     {
       "code": "GB20",
@@ -13286,7 +14041,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 135,
+        "y": 130,
+        "bilateral": true
+      }
     },
     {
       "code": "GB23",
@@ -13325,7 +14085,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 135,
+        "y": 145,
+        "bilateral": true
+      }
     },
     {
       "code": "GB24",
@@ -13369,7 +14134,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 170,
+        "bilateral": true
+      }
     },
     {
       "code": "GB25",
@@ -13412,7 +14182,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 135,
+        "y": 220,
+        "bilateral": true
+      }
     },
     {
       "code": "GB26",
@@ -13457,7 +14232,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 135,
+        "y": 270,
+        "bilateral": true
+      }
     },
     {
       "code": "GB27",
@@ -13500,7 +14280,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 290,
+        "bilateral": true
+      }
     },
     {
       "code": "GB28",
@@ -13541,7 +14326,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 295,
+        "bilateral": true
+      }
     },
     {
       "code": "GB29",
@@ -13585,7 +14375,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 320,
+        "bilateral": true
+      }
     },
     {
       "code": "GB30",
@@ -13736,7 +14531,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 135,
+        "y": 380,
+        "bilateral": true
+      }
     },
     {
       "code": "GB33",
@@ -13777,7 +14577,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 133,
+        "y": 410,
+        "bilateral": true
+      }
     },
     {
       "code": "GB34",
@@ -13877,7 +14682,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 132,
+        "y": 440,
+        "bilateral": true
+      }
     },
     {
       "code": "GB36",
@@ -13922,7 +14732,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 132,
+        "y": 460,
+        "bilateral": true
+      }
     },
     {
       "code": "GB37",
@@ -13968,7 +14783,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 132,
+        "y": 480,
+        "bilateral": true
+      }
     },
     {
       "code": "GB38",
@@ -14015,7 +14835,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 132,
+        "y": 490,
+        "bilateral": true
+      }
     },
     {
       "code": "GB39",
@@ -14233,7 +15058,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 542,
+        "bilateral": true
+      }
     },
     {
       "code": "GB43",
@@ -14336,7 +15166,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 132,
+        "y": 558,
+        "bilateral": true
+      }
     },
     {
       "code": "LR1",
@@ -14379,7 +15214,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 117,
+        "y": 558,
+        "bilateral": true
+      }
     },
     {
       "code": "LR2",
@@ -14531,7 +15371,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 510,
+        "bilateral": true
+      }
     },
     {
       "code": "LR5",
@@ -14577,7 +15422,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 470,
+        "bilateral": true
+      }
     },
     {
       "code": "LR6",
@@ -14621,7 +15471,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 460,
+        "bilateral": true
+      }
     },
     {
       "code": "LR7",
@@ -14658,7 +15513,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 440,
+        "bilateral": true
+      }
     },
     {
       "code": "LR8",
@@ -14760,7 +15620,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 360,
+        "bilateral": true
+      }
     },
     {
       "code": "LR10",
@@ -14799,7 +15664,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 320,
+        "bilateral": true
+      }
     },
     {
       "code": "LR11",
@@ -14842,7 +15712,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 115,
+        "y": 290,
+        "bilateral": true
+      }
     },
     {
       "code": "LR12",
@@ -14881,7 +15756,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 116,
+        "y": 275,
+        "bilateral": true
+      }
     },
     {
       "code": "LR13",
@@ -15038,7 +15918,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 530,
+        "bilateral": false
+      }
     },
     {
       "code": "GV2",
@@ -15082,7 +15967,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 510,
+        "bilateral": false
+      }
     },
     {
       "code": "GV3",
@@ -15234,7 +16124,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 380,
+        "bilateral": false
+      }
     },
     {
       "code": "GV6",
@@ -15277,7 +16172,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 370,
+        "bilateral": false
+      }
     },
     {
       "code": "GV7",
@@ -15316,7 +16216,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 360,
+        "bilateral": false
+      }
     },
     {
       "code": "GV8",
@@ -15355,7 +16260,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 280,
+        "bilateral": false
+      }
     },
     {
       "code": "GV9",
@@ -15399,7 +16309,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 250,
+        "bilateral": false
+      }
     },
     {
       "code": "GV10",
@@ -15442,7 +16357,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 220,
+        "bilateral": false
+      }
     },
     {
       "code": "GV11",
@@ -15487,7 +16407,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 195,
+        "bilateral": false
+      }
     },
     {
       "code": "GV12",
@@ -15531,7 +16456,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 170,
+        "bilateral": false
+      }
     },
     {
       "code": "GV13",
@@ -15572,7 +16502,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 145,
+        "bilateral": false
+      }
     },
     {
       "code": "GV14",
@@ -15788,7 +16723,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 82,
+        "bilateral": false
+      }
     },
     {
       "code": "GV18",
@@ -15829,7 +16769,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 78,
+        "bilateral": false
+      }
     },
     {
       "code": "GV19",
@@ -15870,7 +16815,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 75,
+        "bilateral": false
+      }
     },
     {
       "code": "GV20",
@@ -15973,7 +16923,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 65,
+        "bilateral": false
+      }
     },
     {
       "code": "GV22",
@@ -16014,7 +16969,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 60,
+        "bilateral": false
+      }
     },
     {
       "code": "GV23",
@@ -16161,7 +17121,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 46,
+        "bilateral": false
+      }
     },
     {
       "code": "GV26",
@@ -16264,7 +17229,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 50,
+        "bilateral": false
+      }
     },
     {
       "code": "GV28",
@@ -16305,7 +17275,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 52,
+        "bilateral": false
+      }
     },
     {
       "code": "CV1",
@@ -16350,7 +17325,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 555,
+        "bilateral": false
+      }
     },
     {
       "code": "CV2",
@@ -16584,7 +17564,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 260,
+        "bilateral": false
+      }
     },
     {
       "code": "CV6",
@@ -16696,7 +17681,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 248,
+        "bilateral": false
+      }
     },
     {
       "code": "CV8",
@@ -16785,7 +17775,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 234,
+        "bilateral": false
+      }
     },
     {
       "code": "CV10",
@@ -16829,7 +17824,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 224,
+        "bilateral": false
+      }
     },
     {
       "code": "CV11",
@@ -16873,7 +17873,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 218,
+        "bilateral": false
+      }
     },
     {
       "code": "CV12",
@@ -16975,7 +17980,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 198,
+        "bilateral": false
+      }
     },
     {
       "code": "CV14",
@@ -17022,7 +18032,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 188,
+        "bilateral": false
+      }
     },
     {
       "code": "CV15",
@@ -17068,7 +18083,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 180,
+        "bilateral": false
+      }
     },
     {
       "code": "CV16",
@@ -17113,7 +18133,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 175,
+        "bilateral": false
+      }
     },
     {
       "code": "CV17",
@@ -17211,7 +18236,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 155,
+        "bilateral": false
+      }
     },
     {
       "code": "CV19",
@@ -17250,7 +18280,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 145,
+        "bilateral": false
+      }
     },
     {
       "code": "CV20",
@@ -17294,7 +18329,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 135,
+        "bilateral": false
+      }
     },
     {
       "code": "CV21",
@@ -17333,7 +18373,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 95,
+        "bilateral": false
+      }
     },
     {
       "code": "CV22",
@@ -17493,7 +18538,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 60,
+        "bilateral": false
+      }
     },
     {
       "code": "EX-HN1",
@@ -17573,7 +18623,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 25,
+        "bilateral": false
+      }
     },
     {
       "code": "EX-HN3",
@@ -17604,7 +18659,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 30,
+        "bilateral": false
+      }
     },
     {
       "code": "EX-HN4",
@@ -17732,7 +18792,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 80,
+        "y": 60,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-HN7",
@@ -17763,7 +18828,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 104,
+        "y": 40,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-HN8",
@@ -17794,7 +18864,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 50,
+        "bilateral": false
+      }
     },
     {
       "code": "EX-HN9",
@@ -17825,7 +18900,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 45,
+        "bilateral": false
+      }
     },
     {
       "code": "EX-HN10",
@@ -17856,7 +18936,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 60,
+        "bilateral": false
+      }
     },
     {
       "code": "EX-HN11",
@@ -17887,7 +18972,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 100,
+        "y": 80,
+        "bilateral": false
+      }
     },
     {
       "code": "EX-HN12",
@@ -17918,7 +19008,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 96,
+        "y": 80,
+        "bilateral": false
+      }
     },
     {
       "code": "EX-HN13",
@@ -17949,7 +19044,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 104,
+        "y": 80,
+        "bilateral": false
+      }
     },
     {
       "code": "EX-HN14",
@@ -17980,7 +19080,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 70,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-HN15",
@@ -18011,7 +19116,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 70,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-CA1",
@@ -18090,7 +19200,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 110,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-B2",
@@ -18121,7 +19236,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 130,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-B3",
@@ -18152,7 +19272,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 215,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-B4",
@@ -18183,7 +19308,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 320,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-B5",
@@ -18214,7 +19344,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 380,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-B6",
@@ -18245,7 +19380,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 117,
+        "y": 330,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-B7",
@@ -18323,7 +19463,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 100,
+        "y": 320,
+        "bilateral": false
+      }
     },
     {
       "code": "EX-B9",
@@ -18354,7 +19499,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 113,
+        "y": 415,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-UE1",
@@ -18385,7 +19535,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 148,
+        "y": 215,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-UE2",
@@ -18416,7 +19571,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 148,
+        "y": 258,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-UE3",
@@ -18447,7 +19607,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 145,
+        "y": 295,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-UE4",
@@ -18478,7 +19643,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 145,
+        "y": 308,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-UE5",
@@ -18509,7 +19679,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 145,
+        "y": 310,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-UE6",
@@ -18540,7 +19715,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 152,
+        "y": 310,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-UE7",
@@ -18618,7 +19798,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 415,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-UE9",
@@ -18649,7 +19834,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "back",
+        "x": 145,
+        "y": 312,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-UE10",
@@ -18680,7 +19870,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 145,
+        "y": 308,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-UE11",
@@ -18711,7 +19906,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 140,
+        "y": 320,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-LE1",
@@ -18742,7 +19942,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 124,
+        "y": 360,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-LE2",
@@ -18820,7 +20025,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 415,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-LE4",
@@ -18851,7 +20061,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 113,
+        "y": 422,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-LE5",
@@ -18929,7 +20144,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 135,
+        "y": 440,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-LE7",
@@ -18960,7 +20180,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 450,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-LE8",
@@ -18991,7 +20216,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 105,
+        "y": 530,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-LE9",
@@ -19022,7 +20252,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 135,
+        "y": 530,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-LE10",
@@ -19053,7 +20288,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 130,
+        "y": 555,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-LE11",
@@ -19084,7 +20324,12 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 110,
+        "y": 560,
+        "bilateral": true
+      }
     },
     {
       "code": "EX-LE12",
@@ -19115,11 +20360,16 @@
       "sources": [
         "km-agent"
       ],
-      "position": null
+      "position": {
+        "view": "front",
+        "x": 117,
+        "y": 560,
+        "bilateral": true
+      }
     },
     {
       "code": "SA1",
-      "name_zh": "",
+      "name_zh": "头部骨度分寸法",
       "name_en": "",
       "pinyin": "",
       "aliases": [],
@@ -19150,7 +20400,7 @@
     },
     {
       "code": "SA2",
-      "name_zh": "",
+      "name_zh": "腰椎骨度分寸法",
       "name_en": "",
       "pinyin": "",
       "aliases": [],
@@ -19181,7 +20431,7 @@
     },
     {
       "code": "SA3",
-      "name_zh": "",
+      "name_zh": "胸骨体结合 (剑胸结合)",
       "name_en": "",
       "pinyin": "",
       "aliases": [],
@@ -19212,7 +20462,7 @@
     },
     {
       "code": "SA4",
-      "name_zh": "",
+      "name_zh": "肋骨计数法",
       "name_en": "",
       "pinyin": "",
       "aliases": [],
@@ -19243,7 +20493,7 @@
     },
     {
       "code": "AA1",
-      "name_zh": "",
+      "name_zh": "耳穴 (耳针疗法 - 区域)",
       "name_en": "",
       "pinyin": "",
       "aliases": [],
@@ -19274,7 +20524,7 @@
     },
     {
       "code": "AA2",
-      "name_zh": "",
+      "name_zh": "戒烟穴 (耳针)",
       "name_en": "",
       "pinyin": "",
       "aliases": [],
@@ -19305,7 +20555,7 @@
     },
     {
       "code": "AA3",
-      "name_zh": "",
+      "name_zh": "减肥穴 (耳针)",
       "name_en": "",
       "pinyin": "",
       "aliases": [],
