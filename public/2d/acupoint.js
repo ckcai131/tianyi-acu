@@ -215,16 +215,36 @@
     const sidebar = document.getElementById('sidebar');
 
     const meridianZh = point.meridian.name_zh;
-    const functions = (point.functions || []).slice(0, 5);
-    const indications = (point.indications || []).slice(0, 8);
+    const functions = (point.functions || []);
+    const indications = (point.indications || []);
     const cautions = point.cautions || [];
-    const categories = (point.categories || []).slice(0, 3);
+    const categories = (point.categories || []);
+
+    // 渲染针刺法: 处理换行符
+    const needlingHtml = (point.needling || '')
+      .split('\n')
+      .filter(line => line.trim())
+      .map(line => `<li>${line.replace(/^-\s*/, '').trim()}</li>`)
+      .join('');
+
+    // 渲染来源
+    const sourcesHtml = (point.sources || [])
+      .map(s => {
+        const map = {
+          'km-agent': 'km-agent',
+          'AcuKG': 'AcuKG',
+          'chino-meds': 'chino-meds',
+          'nihaixia-app': 'nihaixia-app',
+        };
+        return `<span class="source-tag">${map[s] || s}</span>`;
+      })
+      .join('');
 
     sidebar.innerHTML = `
       <div class="info-card">
         <div class="acupoint">${point.name_zh}穴</div>
         <div class="code">${point.code} · ${point.pinyin || point.name_en || ''}</div>
-        <div class="meridian">${meridianZh}</div>
+        <div class="meridian">${meridianZh}${point.region ? ' · ' + point.region : ''}</div>
 
         ${categories.length ? `
           <div class="label">类 别</div>
@@ -241,14 +261,14 @@
 
         ${functions.length ? `
           <div class="label">主 治 功 效</div>
-          <ul class="functions" style="padding: 0; margin: 0;">
-            ${functions.map(f => `<li>${f}</li>`).join('')}
+          <ul class="functions" style="padding: 0; margin: 0; list-style: none;">
+            ${functions.map(f => `<li>· ${f}</li>`).join('')}
           </ul>
         ` : ''}
 
         ${indications.length ? `
-          <div class="label">适 用 情 形</div>
-          <div class="text">${indications.join('、')}</div>
+          <div class="label">适 用 情 形 <span style="font-weight:normal;color:#888;font-size:0.85em;">(${indications.length} 条)</span></div>
+          <div class="text" style="line-height:1.7;">${indications.map(i => `<span class="ind-tag">${i}</span>`).join('')}</div>
         ` : ''}
 
         ${point.tuina_method ? `
@@ -256,8 +276,21 @@
           <div class="text">${point.tuina_method}</div>
         ` : ''}
 
+        ${needlingHtml ? `
+          <div class="label">针 刺 法 <span style="font-weight:normal;color:#888;font-size:0.85em;">(含禁忌)</span></div>
+          <ul class="needling" style="padding: 0; margin: 0; list-style: none; font-size:0.92em;color:#5a4a3a;">
+            ${needlingHtml}
+          </ul>
+        ` : ''}
+
         ${cautions.length ? `
           <div class="warn-box">⚠ ${cautions.join('；')}</div>
+        ` : ''}
+
+        ${sourcesHtml ? `
+          <div class="sources" style="margin-top:16px;padding-top:12px;border-top:1px dashed #d9cfb9;font-size:0.8em;color:#888;">
+            数据源: ${sourcesHtml}
+          </div>
         ` : ''}
       </div>
     `;
