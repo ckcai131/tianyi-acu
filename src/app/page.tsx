@@ -493,14 +493,14 @@ function ShiKongFangWei({ dayGanZhi, dayYinYang }: { dayGanZhi: string; dayYinYa
     )
   }
 
-  // 八方按洛书九宫布局:
-  //   [西北] [ 北 ] [东北]
-  //   [ 西 ]  中宫 [ 东 ]
-  //   [西南] [ 南 ] [东南]
+  // 八方按先天八卦方位布局 (顺时针旋转 180°):
+  //   [东南] [ 南 ] [西南]
+  //   [ 东 ]  中宫 [ 西 ]
+  //   [东北] [ 北 ] [西北]
   const layout: (FangWei | null)[][] = [
-    [data.八方[7], data.八方[0], data.八方[1]],  // 西北 北 东北
-    [data.八方[6], null,         data.八方[2]],  // 西  中 东
-    [data.八方[5], data.八方[4], data.八方[3]],  // 西南 南 东南
+    [data.八方[3], data.八方[4], data.八方[5]],  // 东南 南 西南
+    [data.八方[2], null,         data.八方[6]],  // 东  中 西
+    [data.八方[1], data.八方[0], data.八方[7]],  // 东北 北 西北
   ]
 
   return (
