@@ -39,22 +39,63 @@
 
 ---
 
+## ✨ 当前能力
+
+### 🏠 首页（择时开穴）
+
+- **4 大算法实时计算**：值符 / 值使 / 第三针 / 吉凶时
+- **3 个穴位核心卡片**：可点击跳转 2D 详情页（整个卡片区域）
+- **干支 Banner**：日柱 / 时柱 / 喜神方
+- **大吉时判定**：✓ 绿色（可施针）/ ✗ 红色 + 原因
+- **今日大吉时一览**：每个时辰的吉凶信息（黄黑道 + 神煞），点击可切换时辰
+- **⏱ 当前按钮**：用户修改后一键恢复实时
+- **自动重算**：修改日期/时辰立即生效（200ms debounce）
+- **30 秒守护**：未编辑时静默更新当前时间结果
+
+### 🩺 2D 详情页（409 穴位完整覆盖）
+
+- **409 穴位全收录**（GB/T 12346-2021 国标）
+- **图片 + 信息双栏布局**：左侧解剖图，右侧详细信息
+- **11 字段完整信息**：定位 / 取穴 / 主治 / 适用情形 / 针刺法 / 按摩手法 / 古籍摘要 / 现代研究 / 解剖 / 类别 / 来源
+- **5 字段精简索引**：gzip 后仅 3.5 KB，首页异步加载
+- **简体中文纯净**：移除韩文残留、CJK 兼容区字符
+
+### 🔍 数据准确性
+
+- **GB 标准校正**：12 个穴位名修正（如 ST16/ST19/ST21/SP7/BL61 等）
+- **繁简统一**：传统字 `解谿` → 简体 `解溪`，`谿`/`鄕`/`窓` 等自动 fallback
+- **完整穴位名**：避免歧义（如 `窍阴` → `头窍阴` GB11 / `足窍阴` GB44）
+- **100% 索引覆盖**：72 个引擎可能返回的穴位全部命中，无"仅文字"
+
+---
+
 ## 🖥️ 界面展示
 
-页面分 5 个核心区块：
+页面分 6 个核心区块：
 
-1. **三穴核心卡片** —— 推算按钮下方，**最醒目**的位置：
- - ① 值符穴（如 曲泉穴 · 肝经）
- - ② 值使穴（如 中渚穴 · 三焦经）
- - ③ 第三针穴（如 天井穴 · 三焦经）
+1. **三穴核心卡片**（金黄色，**可点击**）—— 推算按钮下方，最醒目的位置：
+   - ① 值符穴（如 曲泉穴 · 肝经）
+   - ② 值使穴（如 中渚穴 · 三焦经）
+   - ③ 第三针穴（如 天井穴 · 三焦经）
 
-2. **干支 Banner** —— 日柱 / 时柱 / 喜神方
+2. **干支 Banner**（白底，**不可点击**）—— 日柱 / 时柱 / 喜神方
 
-3. **大吉时提示** —— ✓ 绿色（大吉时）/ ✗ 红色（非大吉时 + 原因）
+3. **大吉时判定**（绿/红色）—— 当前时辰是否可施针
 
-4. **4 大算法详情** —— 每个算法的完整参数
+4. **今日大吉时一览** —— 本日所有大吉时，按钮带详细吉凶信息，点击切换时辰
 
-5. **今日大吉时 pills** —— 本日所有大吉时，当前时辰高亮
+5. **4 大算法详情卡片** —— 每个算法的完整参数
+
+6. **底部免责声明**
+
+### 🎨 视觉语义化
+
+| 颜色 | 含义 | 区域 |
+|---|---|---|
+| 金黄色 | **可点击** | 3 个穴位卡片 |
+| 白底 | 不可点击（信息）| 干支 / 4 大算法 / 今日大吉时 |
+| 朱砂红 | 警示 | 非大吉时判定 |
+| 玉绿色 | 强调 | 当前时辰高亮 |
 
 ---
 
@@ -117,31 +158,40 @@ npm test
 
 ## 🛠️ 技术栈
 
-- **框架**：Next.js 14 (App Router)
+- **框架**：Next.js 14 (App Router, Static Export)
 - **语言**：TypeScript 5.4
 - **样式**：Tailwind CSS + 自定义 CSS 变量（米白宣纸 + 金褐 + 朱砂 + 玉绿东方美学）
 - **数据**：**全部写进源代码**（`src/lib/*.ts`），**不依赖外部 Excel / JSON 文件**
 - **运行**：纯前端 JS 计算（无服务端）
 - **测试**：Vitest
-- **部署**：静态导出到 TP 子目录
+- **部署**：静态导出到 Web 子目录
 
 ```
 src/
 ├── app/
-│ ├── globals.css         # CSS 变量 (米白 + 金褐 + 朱砂 + 玉绿)
-│ ├── layout.tsx # 根 layout
-│ └── page.tsx # 主页面 (UI)
+│   ├── globals.css         # CSS 变量 (米白 + 金褐 + 朱砂 + 玉绿)
+│   ├── layout.tsx          # 根 layout
+│   └── page.tsx            # 主页面 (UI)
 ├── lib/
-│ ├── data.ts # 干支 + 五行基础
-│ ├── jiazi.ts # 60 甲子主表
-│ ├── jixiong.ts # 720 吉凶时明细
-│ ├── zhifu.ts # 120 值符全时段
-│ ├── zhishi.ts # 12 值使规则
-│ ├── zhiyy.ts # 24 值阳/值阴
-│ └── engine.ts # 计算引擎
+│   ├── data.ts             # 干支 + 五行基础
+│   ├── jiazi.ts            # 60 甲子主表
+│   ├── jixiong.ts          # 720 吉凶时明细
+│   ├── zhifu.ts            # 120 值符全时段
+│   ├── zhishi.ts           # 12 值使规则
+│   ├── zhiyy.ts            # 24 值阳/值阴
+│   ├── engine.ts           # 计算引擎
+│   └── acupoint-finder.ts  # 穴位名匹配 (含繁简 fallback)
 └── __tests__/
- ├── engine.test.ts # 1553 自洽性测试
- └── independent.test.ts # 27 独立交叉验证
+    ├── engine.test.ts      # 1553 自洽性测试
+    └── independent.test.ts # 27 独立交叉验证
+
+public/
+├── acupoints-index.min.json    # 409 穴位精简索引 (5 字段, gzip 3.5 KB)
+├── 2d/
+│   ├── index.html              # 2D 详情页
+│   ├── acupoint.js             # 详情页逻辑
+│   └── acupoints.json          # 2D 详情数据 (409 穴位, 11 字段)
+└── qihuang-images/             # 471 张穴位解剖图 GIF
 ```
 
 ---
@@ -163,31 +213,18 @@ npm run test:watch # 实时测试
 npm run build      # 输出 out/
 ```
 
-构建后自动修复 `/_next/` → `/next/` 路径（GitHub Pages 兼容性）。
+构建后会自动修复 `/_next/` → `/next/` 路径（GitHub Pages 兼容性）。
 
-### 部署到 TP
+### 部署
 
-```bash
-rm -rf /<deploy-path>
-mkdir -p /<deploy-path>
-cp -r out/. /<deploy-path>/
+部署脚本位于 `scripts/deploy.sh`，自动完成：
 
-# 改 basePath: 把 _next/ 改为 /TP/tianyi-acu/next/
-python3 -c "
-import os
-for root, dirs, files in os.walk('out'):
-    for f in files:
-        if f.endswith(('.html', '.js', '.css', '.json', '.txt')):
-            fp = os.path.join(root, f)
-            content = open(fp, encoding='utf-8', errors='ignore').read()
-            new = content.replace('/next/', '/TP/tianyi-acu/next/')
-            if new != content:
-                open(fp, 'w', encoding='utf-8').write(new)
-"
+1. 清空目标目录
+2. 拷贝 `out/` 到部署目录
+3. 修复 `basePath`：把 `_next/` 改为 `<deploy-path>/next/`
+4. 修改文件权限
 
-# 改权限
-chown -R apache:nginx /<deploy-path>/
-```
+修改部署路径只需编辑 `scripts/deploy.sh` 中的 `DEPLOY_DIR` 变量。
 
 ---
 
@@ -202,6 +239,7 @@ chown -R apache:nginx /<deploy-path>/
 ## 🙏 致谢
 
 - **算法出处**：奇门通玄针法（古传术数奇门遁甲分支）
+- **数据来源**：GB/T 12346-2021 国家标准 + 多个开源穴位数据库整合
 - **UI 设计**：东方传统书卷风美学（米白宣纸 + 金褐 + 朱砂 + 玉绿）
 - **技术栈**：Next.js 14 + TypeScript + Tailwind CSS + Vitest
 
